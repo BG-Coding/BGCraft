@@ -3,6 +3,7 @@ Blargh.
 - Maybe implement other power systems
 - Pizza oven (nom nom)
     - multiblock (bricks, maybe some special heat resistant brick)
+        - firebrick item done (needs texture)
     - either 3x3x3 or 3x4x3 (1 block for actual fire)
     - uses coal, yaay
 - Basic machines
