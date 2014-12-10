@@ -2,6 +2,7 @@ package tk.blacky704.bgcraft.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import tk.blacky704.bgcraft.item.ItemFirebrick;
+import tk.blacky704.bgcraft.reference.Names;
 import tk.blacky704.bgcraft.reference.Reference;
 
 /**
@@ -14,6 +15,6 @@ public class ModItems
 
     public static void init()
     {
-        GameRegistry.registerItem(firebrick, "firebrick");
+        GameRegistry.registerItem(firebrick, Names.Items.FIRE_BRICK);
     }
 }
