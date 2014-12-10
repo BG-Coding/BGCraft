@@ -1,0 +1,17 @@
+[
+{
+  "modid": "BGC",
+  "name": "BGCraft",
+  "description": "In developement GG",
+  "version": "1.0",
+  "credits": "Derp",
+  "logoFile": "",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Blacky704","goeiecool9999"],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": []
+}
+]
