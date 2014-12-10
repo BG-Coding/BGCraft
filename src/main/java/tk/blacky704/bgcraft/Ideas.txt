@@ -6,3 +6,5 @@ Blargh.
     - Furnace
     - ore doubling (maybe very expensive method to x3 or x4)
     - item pipes?
+    - Conveyor belts that take power. Belt consists of blocks and power comes from some kind of engine. Items lay in belt ridges.
+    - Vacuum pipe that sucks items from belt. <--- ^: see mechanic suggestion.png
