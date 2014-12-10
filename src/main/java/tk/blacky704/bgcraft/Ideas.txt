@@ -1,0 +1,8 @@
+Blargh.
+
+- Maybe implement other power systems
+- Pizza oven (nom nom)
+- Basic machines
+    - Furnace
+    - ore doubling (maybe very expensive method to x3 or x4)
+    - item pipes?
