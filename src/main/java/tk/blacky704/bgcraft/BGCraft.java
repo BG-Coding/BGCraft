@@ -6,9 +6,11 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import tk.blacky704.bgcraft.init.ModBlocks;
 import tk.blacky704.bgcraft.init.ModItems;
 import tk.blacky704.bgcraft.proxy.IProxy;
 import tk.blacky704.bgcraft.reference.Reference;
+import tk.blacky704.bgcraft.util.LogHelper;
 
 /**
  * @author Blacky
@@ -26,15 +28,19 @@ public class BGCraft
     public void preInit(FMLPreInitializationEvent e)
     {
         ModItems.init();
+        ModBlocks.init();
+        LogHelper.info("PreInit Complete");
     }
 
     @EventHandler
     public void init(FMLInitializationEvent e)
     {
+        LogHelper.info("Init Complete");
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent e)
     {
+        LogHelper.info("PostInit Complete");
     }
 }
