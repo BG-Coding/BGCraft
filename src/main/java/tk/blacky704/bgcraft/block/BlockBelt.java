@@ -15,7 +15,7 @@ public class BlockBelt extends BlockBG implements ITileEntityProvider
     {
         super();
         this.setBlockName(Names.Blocks.BELT);
-    };
+    }
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
@@ -24,5 +24,14 @@ public class BlockBelt extends BlockBG implements ITileEntityProvider
     }
 
     @Override
-    public
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
 }
