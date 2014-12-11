@@ -16,7 +16,7 @@ public class ItemBG extends Item
     public ItemBG()
     {
         super();
-        this.setCreativeTab(CreativeTabs.tabAllSearch); //TODO create own CreativeTab
+        this.setCreativeTab(CreativeTabs.tabMaterials); //TODO create own CreativeTab
     }
 
     @Override
