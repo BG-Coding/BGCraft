@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tk.blacky704.bgcraft.BGCraft;
+import tk.blacky704.bgcraft.block.tileEntity.TileEntityPizzaOven;
 import tk.blacky704.bgcraft.init.ModBlocks;
 import tk.blacky704.bgcraft.reference.Names;
 
@@ -108,7 +109,7 @@ public class BlockPizzaOven extends BlockContainerBG
     @Override
     public TileEntity createNewTileEntity(World world, int p_149915_2_)
     {
-        return null;
+        return new TileEntityPizzaOven();
     }
 
 }
