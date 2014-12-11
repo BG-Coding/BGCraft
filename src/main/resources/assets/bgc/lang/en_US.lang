@@ -5,4 +5,4 @@ item.bgc:firebrick.name=Firebrick
 tile.bgc:firebricks.name=Firebricks
 
 # Creative Tabs
-itemGround.bgc=BGCraft
+itemGroup.bgc=BGCraft
