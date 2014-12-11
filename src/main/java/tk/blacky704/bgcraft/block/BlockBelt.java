@@ -34,4 +34,11 @@ public class BlockBelt extends BlockBG implements ITileEntityProvider
     {
         return false;
     }
+
+    @Override
+    public int getRenderType()
+    {
+        return -1;
+    }
+
 }
