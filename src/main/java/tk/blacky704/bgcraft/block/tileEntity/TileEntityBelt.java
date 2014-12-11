@@ -15,13 +15,13 @@ public class TileEntityBelt extends TileEntity
 
     public void updateEntity()
     {
-        if (testInt <360)
+        /*if (testInt <360)
         {
             testInt++;
         } else {
             testInt++;
             testInt -= 360;
-        }
+        }*/
     }
 
 
