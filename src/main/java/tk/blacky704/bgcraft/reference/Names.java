@@ -13,5 +13,6 @@ public class Names
     public class Blocks
     {
         public static final String FIRE_BRICKS = "firebricks";
+        public static final String BELT = "belt";
     }
 }

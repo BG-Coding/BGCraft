@@ -3,6 +3,7 @@ item.bgc:firebrick.name=Firebrick
 
 # Blocks
 tile.bgc:firebricks.name=Firebricks
+tile.bgc:belt.name=Belt
 
 # Creative Tabs
 itemGroup.bgc=BGCraft
