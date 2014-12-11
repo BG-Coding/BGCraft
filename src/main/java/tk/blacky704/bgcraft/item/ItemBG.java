@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import tk.blacky704.bgcraft.creativetab.CreativeTabBG;
 import tk.blacky704.bgcraft.reference.Reference;
 
 /**
@@ -16,7 +17,7 @@ public class ItemBG extends Item
     public ItemBG()
     {
         super();
-        this.setCreativeTab(CreativeTabs.tabMaterials); //TODO create own CreativeTab
+        this.setCreativeTab(CreativeTabBG.BG_TAB);
     }
 
     @Override

@@ -2,4 +2,7 @@
 item.bgc:firebrick.name=Firebrick
 
 # Blocks
-block.bgc:.name=
+tile.bgc:firebricks.name=Firebricks
+
+# Creative Tabs
+itemGround.bgc=BGCraft

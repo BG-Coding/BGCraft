@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import tk.blacky704.bgcraft.creativetab.CreativeTabBG;
 import tk.blacky704.bgcraft.reference.Reference;
 
 /**
@@ -17,7 +18,7 @@ public class BlockBG extends Block
     public BlockBG(Material m)
     {
         super(m);
-        this.setCreativeTab(CreativeTabs.tabMaterials); //TODO create own CreativeTab
+        this.setCreativeTab(CreativeTabBG.BG_TAB);
     }
 
     public BlockBG()

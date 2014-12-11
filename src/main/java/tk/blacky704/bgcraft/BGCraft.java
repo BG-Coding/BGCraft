@@ -8,6 +8,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import tk.blacky704.bgcraft.init.ModBlocks;
 import tk.blacky704.bgcraft.init.ModItems;
+import tk.blacky704.bgcraft.init.Recipes;
 import tk.blacky704.bgcraft.proxy.IProxy;
 import tk.blacky704.bgcraft.reference.Reference;
 import tk.blacky704.bgcraft.util.LogHelper;
@@ -35,6 +36,7 @@ public class BGCraft
     @EventHandler
     public void init(FMLInitializationEvent e)
     {
+        Recipes.init();
         LogHelper.info("Init Complete");
     }
 
