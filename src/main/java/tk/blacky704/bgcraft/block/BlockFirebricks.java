@@ -11,5 +11,6 @@ public class BlockFirebricks extends BlockBG
     {
         super();
         this.setBlockName(Names.Blocks.FIRE_BRICKS);
+        this.setHardness(2f);
     }
 }

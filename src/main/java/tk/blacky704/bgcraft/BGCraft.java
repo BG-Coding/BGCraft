@@ -21,7 +21,7 @@ import tk.blacky704.bgcraft.util.LogHelper;
 public class BGCraft
 {
     @Instance(Reference.MOD_ID)
-    private static BGCraft instance;
+    public static BGCraft instance;
 
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static IProxy proxy;

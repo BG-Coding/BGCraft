@@ -3,6 +3,8 @@ item.bgc:firebrick.name=Firebrick
 
 # Blocks
 tile.bgc:firebricks.name=Firebricks
+tile.bgc:pizzaOvenIdle.name=Pizza Oven
+tile.bgc:pizzaOvenActive.name=Pizza Oven
 tile.bgc:belt.name=Belt
 
 # Creative Tabs

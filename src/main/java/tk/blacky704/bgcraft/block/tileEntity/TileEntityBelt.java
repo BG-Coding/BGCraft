@@ -1,4 +1,4 @@
-package tk.blacky704.bgcraft.block;
+package tk.blacky704.bgcraft.block.tileEntity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
