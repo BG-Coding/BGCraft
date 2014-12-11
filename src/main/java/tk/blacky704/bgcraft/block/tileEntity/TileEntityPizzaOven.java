@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import tk.blacky704.bgcraft.reference.Names;
 
 /**
  * @author Blacky
@@ -22,7 +21,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
     @Override
     public int[] getAccessibleSlotsFromSide(int side)
     {
-        return new int[0];
+        return null;
     }
 
     @Override
