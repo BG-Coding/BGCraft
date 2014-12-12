@@ -3,6 +3,9 @@ package tk.blacky704.bgcraft.block;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +18,7 @@ import net.minecraft.world.World;
 import tk.blacky704.bgcraft.BGCraft;
 import tk.blacky704.bgcraft.block.tileEntity.TileEntityPizzaOven;
 import tk.blacky704.bgcraft.init.ModBlocks;
+import tk.blacky704.bgcraft.reference.Integers;
 import tk.blacky704.bgcraft.reference.Names;
 import tk.blacky704.bgcraft.reference.Reference;
 
@@ -33,6 +37,8 @@ public class BlockPizzaOven extends BlockContainerBG
     private IIcon iconBottom;
     @SideOnly(Side.CLIENT)
     private IIcon iconFront;
+
+    private static boolean keepInventory;
 
     public BlockPizzaOven(boolean isActive)
     {
@@ -69,43 +75,70 @@ public class BlockPizzaOven extends BlockContainerBG
     public void onBlockAdded(World world, int x, int y, int z)
     {
         super.onBlockAdded(world, x, y, z);
+        this.setDefautDirection(world, x, y , z);
     }
 
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, float hitX, float hitY, float hitZ)
+    private void setDefautDirection(World world, int x, int y, int z)
+    {
+        if(!world.isRemote)
+        {
+            Block b1 = world.getBlock(x, y, z - 1);
+            Block b2 = world.getBlock(x, y, z + 1);
+            Block b3 = world.getBlock(x - 1, y, z);
+            Block b4 = world.getBlock(x + 1, y, z);
+            byte b0 = 3;
+            if(b1.func_149730_j() && !b2.func_149698_L())
+            {
+                b0 = 3;
+            }
+            if(b2.func_149730_j() && !b1.func_149698_L())
+            {
+                b0 = 2;
+            }
+            if(b3.func_149730_j() && !b4.func_149698_L())
+            {
+                b0 = 5;
+            }
+            if(b4.func_149730_j() && !b3.func_149698_L())
+            {
+                b0 = 4;
+            }
+            world.setBlockMetadataWithNotify(x, y, z, b0, 2);
+        }
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float hitX, float hitY, float hitZ)
     {
         if (!world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, BGCraft.instance, 1, world, x, y, z);
-            return true;
+            FMLNetworkHandler.openGui(player, BGCraft.instance, Integers.GuiIds.PIZZA_OVEN, world, x, y, z);
         }
-        return false;
+        return true;
     }
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack itemStack)
     {
-        int l = determineOrientation(world, x, y, z, player);
-        world.setBlockMetadataWithNotify(x, y, z, l, 2);
-        System.out.println("metadata:" + world.getBlockMetadata(x, y, z));
-    }
-
-    public static int determineOrientation(World par0World, int par1, int par2, int par3, EntityLivingBase par4EntityLivingBase)
-    {
-        if (MathHelper.abs((float) par4EntityLivingBase.posX - (float) par1) < 2.0F && MathHelper.abs((float) par4EntityLivingBase.posZ - (float) par3) < 2.0F)
+        world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+        int l = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360F) + 0.5D) & 3;
+        if(l == 0)
         {
-            double d0 = par4EntityLivingBase.posY + 1.82D - (double) par4EntityLivingBase.yOffset;
-
-            if (d0 - (double) par2 > 2.0D)
-            {
-                return 1;
-            }
-
-            if ((double) par2 - d0 > 0.0D)
-            {
-                return 0;
-            }
+            world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+        }if(l == 1)
+        {
+            world.setBlockMetadataWithNotify(x, y, z, 5, 2);
+        }if(l == 2)
+        {
+            world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+        }if(l == 3)
+        {
+            world.setBlockMetadataWithNotify(x, y, z, 4, 2);
         }
-        int l = MathHelper.floor_double((double) (par4EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        return l == 0 ? 2 : (l == 1 ? 5 : (l == 2 ? 3 : (l == 3 ? 4 : 0)));
+        if(itemStack.hasDisplayName())
+        {
+            TileEntityPizzaOven pizzaOven = (TileEntityPizzaOven) world.getTileEntity(x, y, z);
+            pizzaOven.setGuiDisplayName(Names.Containers.PIZZA_OVEN);
+        }
     }
 
     @Override
@@ -114,4 +147,22 @@ public class BlockPizzaOven extends BlockContainerBG
         return new TileEntityPizzaOven();
     }
 
+    public static void updateBlockState(boolean burning, World world, int x, int y, int z)
+    {
+        int i = world.getBlockMetadata(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+        keepInventory = true;
+        if(burning)
+        {
+            world.setBlock(x, y, z, ModBlocks.pizzaOvenActive);
+        } else
+            world.setBlock(x, y, z, ModBlocks.pizzaOvenIdle);
+        keepInventory = false;
+        world.setBlockMetadataWithNotify(x, y, z, i, 2);
+        if(tileEntity != null)
+        {
+            tileEntity.validate();
+            world.setTileEntity(x, y, z, tileEntity);
+        }
+    }
 }

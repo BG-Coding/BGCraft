@@ -17,4 +17,14 @@ public class Names
         public static final String PIZZA_OVEN_ACTIVE = "pizzaOvenActive";
         public static final String BELT = "belt";
     }
+
+    public class Containers
+    {
+        public static final String PIZZA_OVEN = "Pizza Oven";
+    }
+
+    public class TileEntities
+    {
+        public static final String PIZZA_OVEN = "tilePizzaOven";
+    }
 }
