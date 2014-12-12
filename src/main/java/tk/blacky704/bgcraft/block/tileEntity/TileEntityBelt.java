@@ -7,21 +7,15 @@ import net.minecraft.tileentity.TileEntity;
  */
 public class TileEntityBelt extends TileEntity
 {
-    public int testInt = 0;
+    public int animationProgress = 0;
     public TileEntityBelt ()
     {
-        System.out.println("tileEntity intialised");
+
     }
 
     public void updateEntity()
     {
-        /*if (testInt <360)
-        {
-            testInt++;
-        } else {
-            testInt++;
-            testInt -= 360;
-        }*/
+
     }
 
 
