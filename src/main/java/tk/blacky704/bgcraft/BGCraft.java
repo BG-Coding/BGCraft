@@ -7,8 +7,11 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import tk.blacky704.bgcraft.handler.GuiHandler;
 import tk.blacky704.bgcraft.init.ModBlocks;
 import tk.blacky704.bgcraft.init.ModItems;
+import tk.blacky704.bgcraft.init.ModTileEntities;
 import tk.blacky704.bgcraft.init.Recipes;
 import tk.blacky704.bgcraft.proxy.IProxy;
 import tk.blacky704.bgcraft.reference.Reference;
@@ -37,6 +40,8 @@ public class BGCraft
     @EventHandler
     public void init(FMLInitializationEvent e)
     {
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+        ModTileEntities.init();
         Recipes.init();
         LogHelper.info("Init Complete");
     }
