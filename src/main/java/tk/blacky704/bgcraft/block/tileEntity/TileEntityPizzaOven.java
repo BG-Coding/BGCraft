@@ -254,15 +254,21 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
         {
             ItemStack itemStack = FurnaceRecipes.smelting().getSmeltingResult(this.inventory[0]);
             if (itemStack == null) return false;
-            if (this.inventory[2] == null) return true;
-            if (!this.inventory[2].isItemEqual(itemStack)) return false;
-            int result = this.inventory[2].stackSize + itemStack.stackSize;
-            return result <= getInventoryStackLimit() && result <= itemStack.getMaxStackSize();
+            if (this.inventory[2] == null && getItemBurnTime(inventory[0]) > 0) return true;
+            if(this.inventory[2] != null)
+            {
+                if(!this.inventory[2].isItemEqual(itemStack))
+                {
+                    return false;
+                }
+                int result = this.inventory[2].stackSize + itemStack.stackSize;
+                return result <= getInventoryStackLimit() && result <= itemStack.getMaxStackSize() && getItemBurnTime(inventory[0]) > 0;
+            }
         }
         return false;
     }
 
-    private boolean isBurning()
+    public boolean isBurning()
     {
         return this.burnTime > 0;
     }
@@ -270,8 +276,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
     @Override
     public int[] getAccessibleSlotsFromSide(int p_94128_1_)
     {
-        //Dunt want nuh automatic stuffz
-        return null;
+        return new int[0];
     }
 
     @Override
@@ -287,4 +292,20 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
         //Dunt want nuh automatic stuffz
         return false;
     }
+
+    public int getBurnTimeRemainingScaled(int i)
+    {
+        if(this.currentItemBurnTime == 0)
+        {
+            this.currentItemBurnTime = this.furnaceSpeed;
+        }
+        return this.burnTime * i / this.currentItemBurnTime;
+    }
+
+    public int getCookProgressScaled(int i)
+    {
+        return this.cookTime * i / this.furnaceSpeed;
+    }
+
+
 }
