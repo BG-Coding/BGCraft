@@ -1,14 +1,7 @@
 Blargh.
 
 - Maybe implement other power systems
-- Pizza oven (nom nom)
-    - multiblock (bricks, maybe some special heat resistant brick)
-        - firebrick item done (needs texture)
-    - either 3x3x3 or 3x4x3 (1 block for actual fire)
-    - uses coal, yaay
-
-    added a pizzaoven concept picture, thought of a shape like that with a fire that burns when you put coal/wood in it,
-    throw items next too it, they cook and get thrown out the front when they're done
+- Pizza oven (nom nom) [x] DUUUUN!
 
 - Basic machines
     - Furnace

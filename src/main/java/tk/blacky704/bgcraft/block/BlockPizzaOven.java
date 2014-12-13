@@ -70,7 +70,7 @@ public class BlockPizzaOven extends BlockContainerBG
     }
 
     @Override
-    public Item getItemDropped(int par1, Random random, int par3)
+    public Item getItemDropped(int i, Random random, int j)
     {
         return Item.getItemFromBlock(ModBlocks.pizzaOvenIdle);
     }
@@ -124,7 +124,7 @@ public class BlockPizzaOven extends BlockContainerBG
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack itemStack)
     {
-        world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+        world.setBlockMetadataWithNotify(x, y, z, 3, 2);
         int l = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360F) + 0.5D) & 3;
         if(l == 0)
         {
@@ -258,5 +258,11 @@ public class BlockPizzaOven extends BlockContainerBG
         }
 
         super.breakBlock(world, x, y, z, block, oldMeta);
+    }
+
+    @Override
+    public Item getItem(World world, int x, int y, int z)
+    {
+        return Item.getItemFromBlock(ModBlocks.pizzaOvenIdle);
     }
 }
