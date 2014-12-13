@@ -56,7 +56,6 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         glPushMatrix();
         glTranslated(posX, posY, posZ);
         this.bindTexture(Texture);
-        //field_147510_h.renderAll();
         glDisable(GL_CULL_FACE);
         glCallList(baseList);
         glEnable(GL_CULL_FACE);
