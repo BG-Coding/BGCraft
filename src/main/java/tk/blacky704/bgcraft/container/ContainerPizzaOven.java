@@ -44,6 +44,7 @@ public class ContainerPizzaOven extends Container
         }
     }
 
+    @Override
     public void addCraftingToCrafters(ICrafting iCrafting)
     {
         super.addCraftingToCrafters(iCrafting);
@@ -52,6 +53,7 @@ public class ContainerPizzaOven extends Container
         iCrafting.sendProgressBarUpdate(this, 2, this.entity.currentItemBurnTime);
     }
 
+    @Override
     public void detectAndSendChanges()
     {
         super.detectAndSendChanges();

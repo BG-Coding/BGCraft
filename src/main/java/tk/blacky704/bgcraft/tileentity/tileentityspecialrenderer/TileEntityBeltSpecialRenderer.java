@@ -1,5 +1,7 @@
 package tk.blacky704.bgcraft.tileentity.tileentityspecialrenderer;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -48,6 +50,7 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
 
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_147500_8_)
     {

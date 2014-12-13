@@ -28,7 +28,7 @@ public class GuiPizzaOven extends GuiContainer
 
     public void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        String name = this.tileEntity.hasCustomInventoryName() ? this.tileEntity.getInventoryName() : I18n.format("Pizza Oven");
+        String name = this.tileEntity.hasCustomInventoryName() ? this.tileEntity.getInventoryName() : I18n.format(this.tileEntity.getInventoryName());
         this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 6, 4210752);
         this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
     }

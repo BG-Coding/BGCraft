@@ -2,9 +2,9 @@
 {
   "modid": "BGC",
   "name": "BGCraft",
-  "description": "In developement GG",
+  "description": "All the random stuff that came in our mind.",
   "version": "1.0",
-  "credits": "Derp",
+  "credits": "cpw11, seargedp, Mojang",
   "logoFile": "",
   "mcversion": "1.7.10",
   "url": "",

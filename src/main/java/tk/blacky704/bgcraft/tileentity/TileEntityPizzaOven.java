@@ -24,7 +24,6 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
     public static final int inventorySize = 3;
     private ItemStack[] inventory;
     private String guiName = Names.Containers.PIZZA_OVEN;
-    public int burnTimeMultiplier = 2;
     public int furnaceSpeed = 100;
     public int burnTime;
     public int currentItemBurnTime;
@@ -174,30 +173,22 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
             if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air)
             {
                 Block block = Block.getBlockFromItem(item);
-
                 if (block == Blocks.wooden_slab)
                 {
-                    return 150 * burnTimeMultiplier;
+                    return 150;
                 }
-
                 if (block.getMaterial() == Material.wood)
                 {
-                    return 300 * burnTimeMultiplier;
-                }
-
-                if (block == Blocks.coal_block)
-                {
-                    return 16000 * burnTimeMultiplier;
+                    return 300;
                 }
             }
-
-            if (item instanceof ItemTool && ((ItemTool) item).getToolMaterialName().equals("WOOD")) return 200 * burnTimeMultiplier;
-            if (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD")) return 200 * burnTimeMultiplier;
-            if (item instanceof ItemHoe && ((ItemHoe) item).getToolMaterialName().equals("WOOD")) return 200 * burnTimeMultiplier;
-            if (item == Items.stick) return 100 * burnTimeMultiplier;
-            if (item == Items.coal) return 1600 * burnTimeMultiplier;
-            if (item == Item.getItemFromBlock(Blocks.sapling)) return 100 * burnTimeMultiplier;
-            if (item == Items.blaze_rod) return 2400 * burnTimeMultiplier;
+            if (item instanceof ItemTool && ((ItemTool) item).getToolMaterialName().equals("WOOD")) return 200;
+            if (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD")) return 200;
+            if (item instanceof ItemHoe && ((ItemHoe) item).getToolMaterialName().equals("WOOD")) return 200;
+            if (item == Items.stick) return 100;
+            if (item == Items.coal) return 1600;
+            if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
+            if (item == Items.blaze_rod) return 2400;
             return GameRegistry.getFuelValue(itemStack);
         }
     }

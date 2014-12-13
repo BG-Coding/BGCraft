@@ -26,5 +26,6 @@ public class Names
     public class TileEntities
     {
         public static final String PIZZA_OVEN = "tilePizzaOven";
+        public static final String BELT = "tileEntityBelt";
     }
 }
