@@ -4,9 +4,9 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import tk.blacky704.bgcraft.block.BlockBelt;
 import tk.blacky704.bgcraft.block.BlockFirebricks;
-import tk.blacky704.bgcraft.block.tileEntity.TileEntityBelt;
+import tk.blacky704.bgcraft.tileentity.TileEntityBelt;
 import tk.blacky704.bgcraft.block.BlockPizzaOven;
-import tk.blacky704.bgcraft.block.TileEntitySpecialRenderer.TileEntityBeltSpecialRenderer;
+import tk.blacky704.bgcraft.tileentity.tileentityspecialrenderer.TileEntityBeltSpecialRenderer;
 import tk.blacky704.bgcraft.reference.Names;
 import tk.blacky704.bgcraft.reference.Reference;
 

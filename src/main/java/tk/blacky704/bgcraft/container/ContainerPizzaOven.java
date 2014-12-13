@@ -8,7 +8,10 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
-import tk.blacky704.bgcraft.block.tileEntity.TileEntityPizzaOven;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.tileentity.TileEntityFurnace;
+import tk.blacky704.bgcraft.tileentity.TileEntityPizzaOven;
 
 
 /**
@@ -76,7 +79,18 @@ public class ContainerPizzaOven extends Container
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int slot, int newValue)
     {
-
+        if(slot == 0)
+        {
+            this.entity.cookTime = newValue;
+        }
+        if(slot == 1)
+        {
+            this.entity.burnTime = newValue;
+        }
+        if(slot == 2)
+        {
+            this.entity.currentItemBurnTime = newValue;
+        }
     }
 
 
@@ -85,5 +99,78 @@ public class ContainerPizzaOven extends Container
     public boolean canInteractWith(EntityPlayer player)
     {
         return true;
+    }
+
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer player, int slotInt)
+    {
+        ItemStack itemstack = null;
+        Slot slot = (Slot)this.inventorySlots.get(slotInt);
+
+        if (slot != null && slot.getHasStack())
+        {
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
+
+            if (slotInt == 2)
+            {
+                if (!this.mergeItemStack(itemstack1, 3, 39, true))
+                {
+                    return null;
+                }
+
+                slot.onSlotChange(itemstack1, itemstack);
+            }
+            else if (slotInt != 1 && slotInt != 0)
+            {
+                if (FurnaceRecipes.smelting().getSmeltingResult(itemstack1) != null)
+                {
+                    if (!this.mergeItemStack(itemstack1, 0, 1, false))
+                    {
+                        return null;
+                    }
+                }
+                else if (TileEntityFurnace.isItemFuel(itemstack1))
+                {
+                    if (!this.mergeItemStack(itemstack1, 1, 2, false))
+                    {
+                        return null;
+                    }
+                }
+                else if (slotInt >= 3 && slotInt < 30)
+                {
+                    if (!this.mergeItemStack(itemstack1, 30, 39, false))
+                    {
+                        return null;
+                    }
+                }
+                else if (slotInt >= 30 && slotInt < 39 && !this.mergeItemStack(itemstack1, 3, 30, false))
+                {
+                    return null;
+                }
+            }
+            else if (!this.mergeItemStack(itemstack1, 3, 39, false))
+            {
+                return null;
+            }
+
+            if (itemstack1.stackSize == 0)
+            {
+                slot.putStack((ItemStack)null);
+            }
+            else
+            {
+                slot.onSlotChanged();
+            }
+
+            if (itemstack1.stackSize == itemstack.stackSize)
+            {
+                return null;
+            }
+
+            slot.onPickupFromSlot(player, itemstack1);
+        }
+
+        return itemstack;
     }
 }

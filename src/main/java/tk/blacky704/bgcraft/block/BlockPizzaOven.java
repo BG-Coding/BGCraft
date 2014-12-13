@@ -14,7 +14,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tk.blacky704.bgcraft.BGCraft;
-import tk.blacky704.bgcraft.block.tileEntity.TileEntityPizzaOven;
+import tk.blacky704.bgcraft.tileentity.TileEntityPizzaOven;
 import tk.blacky704.bgcraft.init.ModBlocks;
 import tk.blacky704.bgcraft.reference.Integers;
 import tk.blacky704.bgcraft.reference.Names;
@@ -65,11 +65,13 @@ public class BlockPizzaOven extends BlockContainerBG
         return side == 1 ? this.iconTop : (side == 0 ? this.iconBottom : (side != meta ? this.blockIcon : this.iconFront));
     }
 
+    @Override
     public Item getItemDropped(int par1, Random random, int par3)
     {
         return Item.getItemFromBlock(ModBlocks.pizzaOvenIdle);
     }
 
+    @Override
     public void onBlockAdded(World world, int x, int y, int z)
     {
         super.onBlockAdded(world, x, y, z);
@@ -115,6 +117,7 @@ public class BlockPizzaOven extends BlockContainerBG
         return true;
     }
 
+    @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack itemStack)
     {
         world.setBlockMetadataWithNotify(x, y, z, 2, 2);

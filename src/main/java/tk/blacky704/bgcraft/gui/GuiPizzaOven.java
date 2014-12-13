@@ -5,13 +5,10 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-import tk.blacky704.bgcraft.block.tileEntity.TileEntityPizzaOven;
+import tk.blacky704.bgcraft.tileentity.TileEntityPizzaOven;
 import tk.blacky704.bgcraft.container.ContainerPizzaOven;
 import tk.blacky704.bgcraft.reference.Reference;
-
-import java.util.Locale;
 
 /**
  * @author Blacky

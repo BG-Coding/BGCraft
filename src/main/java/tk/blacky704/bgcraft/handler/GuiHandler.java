@@ -4,7 +4,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import tk.blacky704.bgcraft.block.tileEntity.TileEntityPizzaOven;
+import tk.blacky704.bgcraft.tileentity.TileEntityPizzaOven;
 import tk.blacky704.bgcraft.container.ContainerPizzaOven;
 import tk.blacky704.bgcraft.gui.GuiPizzaOven;
 import tk.blacky704.bgcraft.reference.Integers;
