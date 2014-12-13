@@ -136,7 +136,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
         String oreDic = OreDictionary.getOreName(Item.getIdFromItem(itemStack.getItem()));
         if (slot == 0)
         {
-            if (oreDic.startsWith("food") || oreDic.startsWith("crop"))
+            if (oreDic.startsWith("food") || oreDic.startsWith("crop") || oreDic.toLowerCase().contains("flour"))
             {
                 return true;
             }
@@ -161,6 +161,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
             {
                 Block block = Block.getBlockFromItem(item);
                 String name = OreDictionary.getOreName(Block.getIdFromBlock(block));
+                System.out.println("block; " + name);
                 if (name.equals("treeWood")) return 600 * burnTimeMultiplier;
                 if (name.equals("plankWood")) return 300 * burnTimeMultiplier;
                 if (name.equals("slabWood")) return 150 * burnTimeMultiplier;
@@ -168,10 +169,10 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
             } else
             {
                 String name = OreDictionary.getOreName(Item.getIdFromItem(item));
+                System.out.println("item; " + name);
                 if (name.equals("stickWood")) return 100 * burnTimeMultiplier;
                 if (name.equals("treeSapling")) return 100 * burnTimeMultiplier;
-                if (name.equals(OreDictionary.getOreName(Item.getIdFromItem(Items.coal))))
-                    return 1600 * burnTimeMultiplier;
+                if (item.equals(Item.getIdFromItem(new ItemStack(Items.coal, 1, 1).getItem()))) return 1600 * burnTimeMultiplier;
             }
         }
         return 0;
@@ -179,52 +180,65 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
 
     public void updateEntity()
     {
-        boolean isBurning = this.isBurning();
+        boolean flag = this.burnTime > 0;
         boolean flag1 = false;
-        if (this.isBurning())
+
+        if (this.burnTime > 0)
         {
-            this.burnTime--;
+            --this.burnTime;
         }
+
         if (!this.worldObj.isRemote)
         {
-            if (!this.isBurning() && this.canSmelt())
+            if (this.burnTime != 0 || this.inventory[1] != null && this.inventory[0] != null)
             {
-                this.currentItemBurnTime = this.burnTime = getItemBurnTime(this.inventory[1]);
-                if (this.isBurning())
+                if (this.burnTime == 0 && this.canSmelt())
                 {
-                    flag1 = true;
-                    if (this.inventory[1] != null)
+                    this.currentItemBurnTime = this.burnTime = getItemBurnTime(this.inventory[1]);
+                    System.out.println(this.currentItemBurnTime);
+
+                    if (this.burnTime > 0)
                     {
-                        this.inventory[1].stackSize--;
-                        if (this.inventory[1].stackSize == 0)
+                        flag1 = true;
+
+                        if (this.inventory[1] != null)
                         {
-                            this.inventory[1] = this.inventory[1].getItem().getContainerItem(this.inventory[1]);
+                            --this.inventory[1].stackSize;
+
+                            if (this.inventory[1].stackSize == 0)
+                            {
+                                this.inventory[1] = inventory[1].getItem().getContainerItem(inventory[1]);
+                            }
                         }
                     }
                 }
+
                 if (this.isBurning() && this.canSmelt())
                 {
-                    this.cookTime++;
+                    ++this.cookTime;
                     if (this.cookTime == this.furnaceSpeed)
                     {
                         this.cookTime = 0;
                         this.smeltItem();
                         flag1 = true;
                     }
-                } else
+                }
+                else
                 {
                     this.cookTime = 0;
                 }
-                if (isBurning != this.isBurning())
-                {
-                    flag1 = true;
-                    BlockPizzaOven.updateBlockState(this.isBurning(), this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-                }
             }
-            if (flag1)
+
+            if (flag != this.burnTime > 0)
             {
-                this.markDirty();
+                flag1 = true;
+                BlockPizzaOven.updateBlockState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
+        }
+
+        if (flag1)
+        {
+            this.markDirty();
         }
     }
 
