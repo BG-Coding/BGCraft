@@ -6,10 +6,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -37,6 +40,7 @@ public class BlockPizzaOven extends BlockContainerBG
     private IIcon iconFront;
 
     private static boolean keepInventory;
+    private  Random random = new Random();
 
     public BlockPizzaOven(boolean isActive)
     {
@@ -148,6 +152,7 @@ public class BlockPizzaOven extends BlockContainerBG
         return new TileEntityPizzaOven();
     }
 
+
     public static void updateBlockState(boolean burning, World world, int x, int y, int z)
     {
         int i = world.getBlockMetadata(x, y, z);
@@ -165,5 +170,93 @@ public class BlockPizzaOven extends BlockContainerBG
             tileEntity.validate();
             world.setTileEntity(x, y, z, tileEntity);
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void randomDisplayTick(World world, int x, int y, int z, Random random)
+    {
+        if (this.isActive)
+        {
+            int l = world.getBlockMetadata(x, y, z);
+            float f = (float)x + 0.5F;
+            float f1 = (float)y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
+            float f2 = (float)z + 0.5F;
+            float f3 = 0.52F;
+            float f4 = random.nextFloat() * 0.6F - 0.3F;
+
+            if (l == 4)
+            {
+                world.spawnParticle("smoke", (double) (f - f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", (double) (f - f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+            }
+            else if (l == 5)
+            {
+                world.spawnParticle("smoke", (double) (f + f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", (double) (f + f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+            }
+            else if (l == 2)
+            {
+                world.spawnParticle("smoke", (double) (f + f4), (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", (double) (f + f4), (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
+            }
+            else if (l == 3)
+            {
+                world.spawnParticle("smoke", (double) (f + f4), (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", (double) (f + f4), (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
+            }
+        }
+    }
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int oldMeta)
+    {
+        if (!keepInventory)
+        {
+            TileEntityPizzaOven tileEntityPizzaOven = (TileEntityPizzaOven)world.getTileEntity(x, y, z);
+
+            if (tileEntityPizzaOven != null)
+            {
+                for (int i1 = 0; i1 < tileEntityPizzaOven.getSizeInventory(); ++i1)
+                {
+                    ItemStack itemstack = tileEntityPizzaOven.getStackInSlot(i1);
+
+                    if (itemstack != null)
+                    {
+                        float f = this.random.nextFloat() * 0.8F + 0.1F;
+                        float f1 = this.random.nextFloat() * 0.8F + 0.1F;
+                        float f2 = this.random.nextFloat() * 0.8F + 0.1F;
+
+                        while (itemstack.stackSize > 0)
+                        {
+                            int j1 = this.random.nextInt(21) + 10;
+
+                            if (j1 > itemstack.stackSize)
+                            {
+                                j1 = itemstack.stackSize;
+                            }
+
+                            itemstack.stackSize -= j1;
+                            EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+
+                            if (itemstack.hasTagCompound())
+                            {
+                                entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                            }
+
+                            float f3 = 0.05F;
+                            entityitem.motionX = (double)((float)this.random.nextGaussian() * f3);
+                            entityitem.motionY = (double)((float)this.random.nextGaussian() * f3 + 0.2F);
+                            entityitem.motionZ = (double)((float)this.random.nextGaussian() * f3);
+                            world.spawnEntityInWorld(entityitem);
+                        }
+                    }
+                }
+
+                world.func_147453_f(x, y, z, block);
+            }
+        }
+
+        super.breakBlock(world, x, y, z, block, oldMeta);
     }
 }

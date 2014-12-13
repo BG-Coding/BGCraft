@@ -220,8 +220,6 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
                 if (this.burnTime == 0 && this.canSmelt())
                 {
                     this.currentItemBurnTime = this.burnTime = getItemBurnTime(this.inventory[1]);
-                    System.out.println(this.currentItemBurnTime);
-
                     if (this.burnTime > 0)
                     {
                         flag1 = true;
@@ -240,7 +238,6 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
                 if (this.isBurning() && this.canSmelt())
                 {
                     ++this.cookTime;
-                    System.out.println(this.cookTime);
                     if (this.cookTime == this.furnaceSpeed)
                     {
                         this.cookTime = 0;

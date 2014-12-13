@@ -2,3 +2,8 @@
 1.710.iml
 1.710.ipr
 1.710.iws
+*.dat_mcr
+*.dat_old
+*.dat
+*.dat
+*.class
