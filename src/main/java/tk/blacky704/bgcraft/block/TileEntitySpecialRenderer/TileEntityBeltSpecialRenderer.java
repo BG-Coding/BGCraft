@@ -1,11 +1,9 @@
 package tk.blacky704.bgcraft.block.TileEntitySpecialRenderer;
 
-import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import tk.blacky704.bgcraft.block.tileEntity.TileEntityBelt;
 import tk.blacky704.bgcraft.reference.Reference;
 
 import static org.lwjgl.opengl.GL11.*;
