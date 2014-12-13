@@ -1,5 +1,6 @@
 package tk.blacky704.bgcraft.block.TileEntitySpecialRenderer;
 
+import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -31,12 +32,18 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         //compile lists.
         glNewList(baseList, GL_COMPILE);
         t.startDrawingQuads();
-        t.setColorOpaque(255,255,255);
-        t.setBrightness(1);
+        t.setNormal(0, 0, 0);
+        t.setColorOpaque(255, 255, 255);
         t.addVertexWithUV(0,0,0,0,0);
-        t.addVertexWithUV(1,0,0,1,0);
+        t.addVertexWithUV(1,0,0, 1, 0);
         t.addVertexWithUV(1,0,1,1,1);
         t.addVertexWithUV(0,0,1,0,1);
+
+        t.addVertexWithUV(0,5f/16f,0,0,0);
+        t.addVertexWithUV(1,5f/16f,0,1,0);
+        t.addVertexWithUV(1,5f/16f,1,1,1);
+        t.addVertexWithUV(0,5f/16f,1,0,1);
+
         t.draw();
         glEndList();
 
@@ -46,21 +53,13 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_147500_8_)
     {
-        TileEntityBelt belt = (TileEntityBelt)tileEntity;
-        if (belt.animationProgress < 100)
-        {
-            belt.animationProgress++;
-        } else
-        {
-            belt.animationProgress++;
-            belt.animationProgress -= 100;
-
-        }
-
         glPushMatrix();
         glTranslated(posX, posY, posZ);
         this.bindTexture(Texture);
+        //field_147510_h.renderAll();
+        glDisable(GL_CULL_FACE);
         glCallList(baseList);
+        glEnable(GL_CULL_FACE);
         glPopMatrix();
 
     }

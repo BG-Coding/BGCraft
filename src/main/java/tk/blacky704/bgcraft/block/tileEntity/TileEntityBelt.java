@@ -15,7 +15,14 @@ public class TileEntityBelt extends TileEntity
 
     public void updateEntity()
     {
-
+        if (animationProgress < 100)
+        {
+            animationProgress++;
+        } else
+        {
+            animationProgress++;
+            animationProgress -= 100;
+        }
     }
 
 
