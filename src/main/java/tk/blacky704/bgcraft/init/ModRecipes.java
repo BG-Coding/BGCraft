@@ -9,7 +9,7 @@ import tk.blacky704.bgcraft.reference.Reference;
  * @author Blacky
  */
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
-public class Recipes
+public class ModRecipes
 {
     public static void init()
     {

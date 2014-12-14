@@ -8,7 +8,8 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityBelt extends TileEntity
 {
     public int animationProgress = 0;
-    public TileEntityBelt ()
+
+    public TileEntityBelt()
     {
 
     }
@@ -18,7 +19,8 @@ public class TileEntityBelt extends TileEntity
         if (animationProgress < 100)
         {
             animationProgress++;
-        } else
+        }
+        else
         {
             animationProgress++;
             animationProgress -= 100;

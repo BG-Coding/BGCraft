@@ -3,8 +3,8 @@ package tk.blacky704.bgcraft.block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import tk.blacky704.bgcraft.tileentity.TileEntityBelt;
 import tk.blacky704.bgcraft.reference.Names;
+import tk.blacky704.bgcraft.tileentity.TileEntityBelt;
 
 /**
  * @author goeiecool9999

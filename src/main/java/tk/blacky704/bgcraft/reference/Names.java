@@ -8,6 +8,7 @@ public class Names
     public class Items
     {
         public static final String FIRE_BRICK = "firebrick";
+        public static final String TOMATO_SEEDS = "tomatoSeeds";
     }
 
     public class Blocks

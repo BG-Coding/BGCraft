@@ -16,11 +16,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tk.blacky704.bgcraft.BGCraft;
-import tk.blacky704.bgcraft.tileentity.TileEntityPizzaOven;
 import tk.blacky704.bgcraft.init.ModBlocks;
 import tk.blacky704.bgcraft.reference.Integers;
 import tk.blacky704.bgcraft.reference.Names;
 import tk.blacky704.bgcraft.reference.Reference;
+import tk.blacky704.bgcraft.tileentity.TileEntityPizzaOven;
 
 import java.util.Random;
 
@@ -39,7 +39,7 @@ public class BlockPizzaOven extends BlockContainerBG
     private IIcon iconFront;
 
     private static boolean keepInventory;
-    private  Random random = new Random();
+    private Random random = new Random();
 
     public BlockPizzaOven(boolean isActive)
     {
@@ -50,7 +50,8 @@ public class BlockPizzaOven extends BlockContainerBG
         {
             this.setBlockName(Names.Blocks.PIZZA_OVEN_ACTIVE);
             this.setLightLevel(0.65f);
-        } else this.setBlockName(Names.Blocks.PIZZA_OVEN_IDLE);
+        }
+        else this.setBlockName(Names.Blocks.PIZZA_OVEN_IDLE);
     }
 
     @SideOnly(Side.CLIENT)
@@ -78,31 +79,31 @@ public class BlockPizzaOven extends BlockContainerBG
     public void onBlockAdded(World world, int x, int y, int z)
     {
         super.onBlockAdded(world, x, y, z);
-        this.setDefautDirection(world, x, y , z);
+        this.setDefautDirection(world, x, y, z);
     }
 
     private void setDefautDirection(World world, int x, int y, int z)
     {
-        if(!world.isRemote)
+        if (!world.isRemote)
         {
             Block b1 = world.getBlock(x, y, z - 1);
             Block b2 = world.getBlock(x, y, z + 1);
             Block b3 = world.getBlock(x - 1, y, z);
             Block b4 = world.getBlock(x + 1, y, z);
             byte b0 = 3;
-            if(b1.func_149730_j() && !b2.func_149698_L())
+            if (b1.func_149730_j() && !b2.func_149698_L())
             {
                 b0 = 3;
             }
-            if(b2.func_149730_j() && !b1.func_149698_L())
+            if (b2.func_149730_j() && !b1.func_149698_L())
             {
                 b0 = 2;
             }
-            if(b3.func_149730_j() && !b4.func_149698_L())
+            if (b3.func_149730_j() && !b4.func_149698_L())
             {
                 b0 = 5;
             }
-            if(b4.func_149730_j() && !b3.func_149698_L())
+            if (b4.func_149730_j() && !b3.func_149698_L())
             {
                 b0 = 4;
             }
@@ -125,20 +126,23 @@ public class BlockPizzaOven extends BlockContainerBG
     {
         world.setBlockMetadataWithNotify(x, y, z, 3, 2);
         int l = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360F) + 0.5D) & 3;
-        if(l == 0)
+        if (l == 0)
         {
             world.setBlockMetadataWithNotify(x, y, z, 2, 2);
-        }if(l == 1)
+        }
+        if (l == 1)
         {
             world.setBlockMetadataWithNotify(x, y, z, 5, 2);
-        }if(l == 2)
+        }
+        if (l == 2)
         {
             world.setBlockMetadataWithNotify(x, y, z, 3, 2);
-        }if(l == 3)
+        }
+        if (l == 3)
         {
             world.setBlockMetadataWithNotify(x, y, z, 4, 2);
         }
-        if(itemStack.hasDisplayName())
+        if (itemStack.hasDisplayName())
         {
             TileEntityPizzaOven pizzaOven = (TileEntityPizzaOven) world.getTileEntity(x, y, z);
             pizzaOven.setGuiDisplayName(Names.Containers.PIZZA_OVEN);
@@ -157,14 +161,15 @@ public class BlockPizzaOven extends BlockContainerBG
         int i = world.getBlockMetadata(x, y, z);
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         keepInventory = true;
-        if(burning)
+        if (burning)
         {
             world.setBlock(x, y, z, ModBlocks.pizzaOvenActive);
-        } else
+        }
+        else
             world.setBlock(x, y, z, ModBlocks.pizzaOvenIdle);
         keepInventory = false;
         world.setBlockMetadataWithNotify(x, y, z, i, 2);
-        if(tileEntity != null)
+        if (tileEntity != null)
         {
             tileEntity.validate();
             world.setTileEntity(x, y, z, tileEntity);
@@ -178,9 +183,9 @@ public class BlockPizzaOven extends BlockContainerBG
         if (this.isActive)
         {
             int l = world.getBlockMetadata(x, y, z);
-            float f = (float)x + 0.5F;
-            float f1 = (float)y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
-            float f2 = (float)z + 0.5F;
+            float f = (float) x + 0.5F;
+            float f1 = (float) y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
+            float f2 = (float) z + 0.5F;
             float f3 = 0.52F;
             float f4 = random.nextFloat() * 0.6F - 0.3F;
 
@@ -212,7 +217,7 @@ public class BlockPizzaOven extends BlockContainerBG
     {
         if (!keepInventory)
         {
-            TileEntityPizzaOven tileEntityPizzaOven = (TileEntityPizzaOven)world.getTileEntity(x, y, z);
+            TileEntityPizzaOven tileEntityPizzaOven = (TileEntityPizzaOven) world.getTileEntity(x, y, z);
 
             if (tileEntityPizzaOven != null)
             {
@@ -236,17 +241,17 @@ public class BlockPizzaOven extends BlockContainerBG
                             }
 
                             itemstack.stackSize -= j1;
-                            EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+                            EntityItem entityitem = new EntityItem(world, (double) ((float) x + f), (double) ((float) y + f1), (double) ((float) z + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
 
                             if (itemstack.hasTagCompound())
                             {
-                                entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                                entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                             }
 
                             float f3 = 0.05F;
-                            entityitem.motionX = (double)((float)this.random.nextGaussian() * f3);
-                            entityitem.motionY = (double)((float)this.random.nextGaussian() * f3 + 0.2F);
-                            entityitem.motionZ = (double)((float)this.random.nextGaussian() * f3);
+                            entityitem.motionX = (double) ((float) this.random.nextGaussian() * f3);
+                            entityitem.motionY = (double) ((float) this.random.nextGaussian() * f3 + 0.2F);
+                            entityitem.motionZ = (double) ((float) this.random.nextGaussian() * f3);
                             world.spawnEntityInWorld(entityitem);
                         }
                     }

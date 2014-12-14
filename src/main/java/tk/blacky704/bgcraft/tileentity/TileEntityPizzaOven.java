@@ -57,15 +57,16 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
         if (this.inventory[slot] != null)
         {
             ItemStack itemStack;
-            if(this.inventory[slot].stackSize <= amount)
+            if (this.inventory[slot].stackSize <= amount)
             {
                 itemStack = this.inventory[slot];
                 this.inventory[slot] = null;
                 return itemStack;
-            } else
+            }
+            else
             {
                 itemStack = this.inventory[slot].splitStack(amount);
-                if(this.inventory[slot].stackSize == 0)
+                if (this.inventory[slot].stackSize == 0)
                 {
                     this.inventory[slot] = null;
                 }
@@ -77,7 +78,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
     @Override
     public ItemStack getStackInSlotOnClosing(int slot)
     {
-        if(this.inventory[slot] != null)
+        if (this.inventory[slot] != null)
         {
             ItemStack itemStack = this.inventory[slot];
             this.inventory[slot] = null;
@@ -90,7 +91,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
     public void setInventorySlotContents(int slot, ItemStack itemStack)
     {
         this.inventory[slot] = itemStack;
-        if(itemStack != null && itemStack.stackSize > this.getInventoryStackLimit())
+        if (itemStack != null && itemStack.stackSize > this.getInventoryStackLimit())
         {
             itemStack.stackSize = this.getInventoryStackLimit();
         }
@@ -143,12 +144,13 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
                 return true;
             }
             Item item = itemStack.getItem();
-            if(item == Items.porkchop) return true;
-            if(item == Items.fish) return true;
-            if(item == Items.beef) return true;
-            if(item == Items.chicken) return true;
-            if(item == Items.potato) return true;
-        } else if (slot == 1 && isItemFuel(itemStack))
+            if (item == Items.porkchop) return true;
+            if (item == Items.fish) return true;
+            if (item == Items.beef) return true;
+            if (item == Items.chicken) return true;
+            if (item == Items.potato) return true;
+        }
+        else if (slot == 1 && isItemFuel(itemStack))
         {
             return true;
         }
@@ -248,7 +250,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
                 BlockPizzaOven.updateBlockState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
-        if(inventory[0] == null && isBurning())
+        if (inventory[0] == null && isBurning())
         {
             this.cookTime = 0;
         }
@@ -266,7 +268,8 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
             if (this.inventory[2] == null)
             {
                 this.inventory[2] = itemStack.copy();
-            } else if (this.inventory[2].isItemEqual(itemStack))
+            }
+            else if (this.inventory[2].isItemEqual(itemStack))
             {
                 this.inventory[2].stackSize += itemStack.stackSize;
             }
@@ -289,7 +292,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
             ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.inventory[0]);
             if (itemstack == null) return false;
             if (this.inventory[2] == null && isItemValidForSlot(0, this.inventory[0])) return true;
-            if(this.inventory[2] != null)
+            if (this.inventory[2] != null)
             {
                 if (!this.inventory[2].isItemEqual(itemstack)) return false;
                 int result = inventory[2].stackSize + itemstack.stackSize;
@@ -326,7 +329,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
 
     public int getBurnTimeRemainingScaled(int i)
     {
-        if(this.currentItemBurnTime == 0)
+        if (this.currentItemBurnTime == 0)
         {
             this.currentItemBurnTime = this.furnaceSpeed;
         }
@@ -379,7 +382,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
             if (this.inventory[i] != null)
             {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                nbttagcompound1.setByte("Slot", (byte)i);
+                nbttagcompound1.setByte("Slot", (byte) i);
                 this.inventory[i].writeToNBT(nbttagcompound1);
                 nbttaglist.appendTag(nbttagcompound1);
             }

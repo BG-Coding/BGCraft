@@ -1,5 +1,6 @@
 # Items
 item.bgc:firebrick.name=Firebrick
+item.bgc:tomatoSeeds.name=Tomato Seeds
 
 # Blocks
 tile.bgc:firebricks.name=Firebricks

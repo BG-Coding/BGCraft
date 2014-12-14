@@ -30,15 +30,15 @@ public class ContainerPizzaOven extends Container
         this.addSlotToContainer(new Slot(entity, 0, 56, 17));
         this.addSlotToContainer(new Slot(entity, 1, 56, 53));
         this.addSlotToContainer(new SlotFurnace(inventory.player, entity, 2, 116, 35));
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
-            for(int j = 0; j < 9; j++)
+            for (int j = 0; j < 9; j++)
             {
                 this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
 
-        for(int i = 0; i < 9; i++)
+        for (int i = 0; i < 9; i++)
         {
             this.addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
         }
@@ -57,18 +57,18 @@ public class ContainerPizzaOven extends Container
     public void detectAndSendChanges()
     {
         super.detectAndSendChanges();
-        for(int i = 0; i < this.crafters.size(); i++)
+        for (int i = 0; i < this.crafters.size(); i++)
         {
             ICrafting iCrafting = (ICrafting) this.crafters.get(i);
-            if(this.lastCookTime != this.entity.cookTime)
+            if (this.lastCookTime != this.entity.cookTime)
             {
                 iCrafting.sendProgressBarUpdate(this, 0, this.entity.cookTime);
             }
-            if(this.lastBurnTime != this.entity.burnTime)
+            if (this.lastBurnTime != this.entity.burnTime)
             {
                 iCrafting.sendProgressBarUpdate(this, 1, this.entity.burnTime);
             }
-            if(this.lastCurrentItemBurnTime != this.entity.currentItemBurnTime)
+            if (this.lastCurrentItemBurnTime != this.entity.currentItemBurnTime)
             {
                 iCrafting.sendProgressBarUpdate(this, 2, this.entity.currentItemBurnTime);
             }
@@ -81,20 +81,19 @@ public class ContainerPizzaOven extends Container
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int slot, int newValue)
     {
-        if(slot == 0)
+        if (slot == 0)
         {
             this.entity.cookTime = newValue;
         }
-        if(slot == 1)
+        if (slot == 1)
         {
             this.entity.burnTime = newValue;
         }
-        if(slot == 2)
+        if (slot == 2)
         {
             this.entity.currentItemBurnTime = newValue;
         }
     }
-
 
 
     @Override
@@ -107,7 +106,7 @@ public class ContainerPizzaOven extends Container
     public ItemStack transferStackInSlot(EntityPlayer player, int slotInt)
     {
         ItemStack itemstack = null;
-        Slot slot = (Slot)this.inventorySlots.get(slotInt);
+        Slot slot = (Slot) this.inventorySlots.get(slotInt);
 
         if (slot != null && slot.getHasStack())
         {
@@ -158,7 +157,7 @@ public class ContainerPizzaOven extends Container
 
             if (itemstack1.stackSize == 0)
             {
-                slot.putStack((ItemStack)null);
+                slot.putStack((ItemStack) null);
             }
             else
             {

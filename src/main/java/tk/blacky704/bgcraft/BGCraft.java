@@ -11,8 +11,8 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import tk.blacky704.bgcraft.handler.GuiHandler;
 import tk.blacky704.bgcraft.init.ModBlocks;
 import tk.blacky704.bgcraft.init.ModItems;
+import tk.blacky704.bgcraft.init.ModRecipes;
 import tk.blacky704.bgcraft.init.ModTileEntities;
-import tk.blacky704.bgcraft.init.Recipes;
 import tk.blacky704.bgcraft.proxy.IProxy;
 import tk.blacky704.bgcraft.reference.Reference;
 import tk.blacky704.bgcraft.util.LogHelper;
@@ -33,6 +33,7 @@ public class BGCraft
     public void preInit(FMLPreInitializationEvent e)
     {
         ModItems.init();
+        ModItems.initOreDic();
         ModBlocks.init();
         LogHelper.info("PreInit Complete");
     }
@@ -42,7 +43,7 @@ public class BGCraft
     {
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         ModTileEntities.init();
-        Recipes.init();
+        ModRecipes.init();
         LogHelper.info("Init Complete");
     }
 

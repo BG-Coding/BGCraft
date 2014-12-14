@@ -24,7 +24,6 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
     {
 
 
-
         //intialize lists
         baseList = glGenLists(1);
         ridgeList = glGenLists(1);
@@ -34,15 +33,15 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         t.startDrawingQuads();
         t.setNormal(0, 0, 0);
         t.setColorOpaque(255, 255, 255);
-        t.addVertexWithUV(0,0,0,0,0);
-        t.addVertexWithUV(1,0,0, 1, 0);
-        t.addVertexWithUV(1,0,1,1,1);
-        t.addVertexWithUV(0,0,1,0,1);
+        t.addVertexWithUV(0, 0, 0, 0, 0);
+        t.addVertexWithUV(1, 0, 0, 1, 0);
+        t.addVertexWithUV(1, 0, 1, 1, 1);
+        t.addVertexWithUV(0, 0, 1, 0, 1);
 
-        t.addVertexWithUV(0,5f/16f,0,0,0);
-        t.addVertexWithUV(1,5f/16f,0,1,0);
-        t.addVertexWithUV(1,5f/16f,1,1,1);
-        t.addVertexWithUV(0,5f/16f,1,0,1);
+        t.addVertexWithUV(0, 5f / 16f, 0, 0, 0);
+        t.addVertexWithUV(1, 5f / 16f, 0, 1, 0);
+        t.addVertexWithUV(1, 5f / 16f, 1, 1, 1);
+        t.addVertexWithUV(0, 5f / 16f, 1, 0, 1);
 
         t.draw();
         glEndList();

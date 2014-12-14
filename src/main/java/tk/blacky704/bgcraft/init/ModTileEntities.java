@@ -1,10 +1,10 @@
 package tk.blacky704.bgcraft.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import tk.blacky704.bgcraft.tileentity.TileEntityBelt;
-import tk.blacky704.bgcraft.tileentity.TileEntityPizzaOven;
 import tk.blacky704.bgcraft.reference.Names;
 import tk.blacky704.bgcraft.reference.Reference;
+import tk.blacky704.bgcraft.tileentity.TileEntityBelt;
+import tk.blacky704.bgcraft.tileentity.TileEntityPizzaOven;
 
 /**
  * @author Blacky
