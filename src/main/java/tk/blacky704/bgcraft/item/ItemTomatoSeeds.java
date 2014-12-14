@@ -18,10 +18,12 @@ public class ItemTomatoSeeds extends ItemBG implements IPlantable
     private Block block;
     private Block soilBlock;
 
-    public ItemTomatoSeeds()
+    public ItemTomatoSeeds(Block block, Block soilBlock)
     {
         super();
         this.setUnlocalizedName(Names.Items.TOMATO_SEEDS);
+        this.block = block;
+        this.soilBlock = soilBlock;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package tk.blacky704.bgcraft.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.oredict.OreDictionary;
 import tk.blacky704.bgcraft.item.ItemFirebrick;
 import tk.blacky704.bgcraft.item.ItemTomatoSeeds;
@@ -14,7 +15,7 @@ import tk.blacky704.bgcraft.reference.Reference;
 public class ModItems
 {
     public static final ItemFirebrick firebrick = new ItemFirebrick();
-    public static final ItemTomatoSeeds tomatoSeeds = new ItemTomatoSeeds();
+    public static final ItemTomatoSeeds tomatoSeeds = new ItemTomatoSeeds(Blocks.hay_block, Blocks.farmland); //TODO change placeholder block to real block
 
     public static void init()
     {
