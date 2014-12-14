@@ -1,6 +1,7 @@
 package tk.blacky704.bgcraft.item;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
@@ -8,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
+import tk.blacky704.bgcraft.block.BlockTomatoPlant;
 import tk.blacky704.bgcraft.reference.Names;
 
 /**
@@ -35,7 +37,7 @@ public class ItemTomatoSeeds extends ItemBG implements IPlantable
         }
         else if (player.canPlayerEdit(x, y, z, p_77648_7_, itemStack) && player.canPlayerEdit(x, y + 1, z, p_77648_7_, itemStack))
         {
-            if (world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, this) && world.isAirBlock(x, y + 1, z) && world.isAirBlock(x, y + 2, z))
+            if (world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, this) && world.isAirBlock(x, y + 1, z))
             {
                 world.setBlock(x, y + 1, z, this.block);
                 --itemStack.stackSize;
@@ -55,13 +57,13 @@ public class ItemTomatoSeeds extends ItemBG implements IPlantable
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
     {
-        return null;
+        return EnumPlantType.Crop;
     }
 
     @Override
     public Block getPlant(IBlockAccess world, int x, int y, int z)
     {
-        return null;
+        return world.getBlock(x, y, z) instanceof BlockTomatoPlant ? world.getBlock(x, y ,z) : null;
     }
 
     @Override

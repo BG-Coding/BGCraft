@@ -17,6 +17,7 @@ public class ItemBG extends Item
     {
         super();
         this.setCreativeTab(CreativeTabBG.BG_TAB);
+        this.setMaxStackSize(64);
     }
 
     @Override

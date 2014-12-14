@@ -9,6 +9,8 @@ public class Names
     {
         public static final String FIRE_BRICK = "firebrick";
         public static final String TOMATO_SEEDS = "tomatoSeeds";
+        public static final String TOMATO = "tomato";
+        public static final String DRIED_TOMATO = "driedTomato";
     }
 
     public class Blocks
@@ -17,6 +19,7 @@ public class Names
         public static final String PIZZA_OVEN_IDLE = "pizzaOvenIdle";
         public static final String PIZZA_OVEN_ACTIVE = "pizzaOvenActive";
         public static final String BELT = "belt";
+        public static final String TOMATO_PLANT = "tomatoPlant";
     }
 
     public class Containers
