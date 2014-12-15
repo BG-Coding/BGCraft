@@ -25,6 +25,18 @@ public class ItemFoodBG extends ItemFood
         this.setCreativeTab(CreativeTabBG.BG_TAB);
     }
 
+    public ItemFoodBG(int healAmount)
+    {
+        super(healAmount, 0.6f, false);
+        this.setCreativeTab(CreativeTabBG.BG_TAB);
+    }
+
+    public ItemFoodBG(int healAmount, float saturation)
+    {
+        super(healAmount, saturation, false);
+        this.setCreativeTab(CreativeTabBG.BG_TAB);
+    }
+
     @Override
     public String getUnlocalizedName()
     {
