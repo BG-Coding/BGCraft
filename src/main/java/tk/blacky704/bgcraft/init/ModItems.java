@@ -18,8 +18,8 @@ public class ModItems
 {
     public static final ItemFirebrick firebrick = new ItemFirebrick();
     public static final ItemTomatoSeeds tomatoSeeds = new ItemTomatoSeeds(ModBlocks.tomatoPlant, Blocks.farmland);
-    public static final ItemTomato tomato = new ItemTomato();
-    public static final ItemDriedTomato driedTomato = new ItemDriedTomato();
+    public static final ItemTomato tomato = new ItemTomato(2);
+    public static final ItemDriedTomato driedTomato = new ItemDriedTomato(4);
 
     public static void init()
     {
@@ -34,5 +34,7 @@ public class ModItems
         OreDictionary.registerOre("seedTomato", tomatoSeeds);
         OreDictionary.registerOre("foodTomato", tomato);
         OreDictionary.registerOre("foodDriedTomato", driedTomato);
+        OreDictionary.registerOre(4098, tomato);
+        OreDictionary.initVanillaEntries();
     }
 }

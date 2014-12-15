@@ -14,6 +14,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.oredict.OreDictionary;
 import tk.blacky704.bgcraft.block.BlockPizzaOven;
+import tk.blacky704.bgcraft.init.ModItems;
 import tk.blacky704.bgcraft.reference.Names;
 
 /**
@@ -124,13 +125,11 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
     @Override
     public void openInventory()
     {
-        //TODO
     }
 
     @Override
     public void closeInventory()
     {
-        //TODO
     }
 
     @Override
@@ -149,6 +148,8 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
             if (item == Items.beef) return true;
             if (item == Items.chicken) return true;
             if (item == Items.potato) return true;
+
+            if(item == ModItems.tomato) return true;
         }
         else if (slot == 1 && isItemFuel(itemStack))
         {

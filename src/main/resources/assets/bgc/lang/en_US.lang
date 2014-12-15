@@ -1,12 +1,15 @@
 # Items
 item.bgc:firebrick.name=Firebrick
 item.bgc:tomatoSeeds.name=Tomato Seeds
+item.bgc:tomato.name=Tomato
+item.bgc:driedTomato.name=Dried Tomato
 
 # Blocks
 tile.bgc:firebricks.name=Firebricks
 tile.bgc:pizzaOvenIdle.name=Pizza Oven
 tile.bgc:pizzaOvenActive.name=Pizza Oven
 tile.bgc:belt.name=Belt
+tile.bgc:tomatoPlant.name=Tomato Plant
 
 # Creative Tabs
 itemGroup.bgc=BGCraft

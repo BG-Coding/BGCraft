@@ -8,11 +8,11 @@ import tk.blacky704.bgcraft.reference.Names;
 /**
  * @author Blacky
  */
-public class ItemDriedTomato extends ItemBG
+public class ItemDriedTomato extends ItemFoodBG
 {
-    public ItemDriedTomato()
+    public ItemDriedTomato(int food)
     {
-        super();
+        super(food, false);
         this.setUnlocalizedName(Names.Items.DRIED_TOMATO);
     }
 

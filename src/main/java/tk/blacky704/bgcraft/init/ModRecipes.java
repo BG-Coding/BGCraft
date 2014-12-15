@@ -1,7 +1,7 @@
 package tk.blacky704.bgcraft.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import tk.blacky704.bgcraft.reference.Reference;
 
@@ -22,6 +22,7 @@ public class ModRecipes
         //ShapelessOreRecipes
 
         //Smelting
-        GameRegistry.addSmelting(new ItemStack(Item.getItemById(336)), new ItemStack(ModItems.firebrick), 0.1f);
+        GameRegistry.addSmelting(new ItemStack(Items.brick), new ItemStack(ModItems.firebrick), 0.1f);
+        GameRegistry.addSmelting(new ItemStack(ModItems.tomato), new ItemStack(ModItems.driedTomato), 0.2f);
     }
 }
