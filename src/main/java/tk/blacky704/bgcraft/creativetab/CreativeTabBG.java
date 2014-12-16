@@ -15,7 +15,7 @@ public class CreativeTabBG
         @Override
         public Item getTabIconItem()
         {
-            return ModItems.firebrick;
+            return ModItems.tomato;
         }
     };
 }

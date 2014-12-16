@@ -3,6 +3,8 @@ item.bgc:firebrick.name=Firebrick
 item.bgc:tomatoSeeds.name=Tomato Seeds
 item.bgc:tomato.name=Tomato
 item.bgc:driedTomato.name=Dried Tomato
+item.bgc:mortar.name=Mortar
+item.bgc:passataBottle.name=Passata Bottle
 
 # Blocks
 tile.bgc:firebricks.name=Firebricks

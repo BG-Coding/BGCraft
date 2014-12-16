@@ -12,7 +12,7 @@ public class Names
         public static final String TOMATO = "tomato";
         public static final String DRIED_TOMATO = "driedTomato";
         public static final String MORTAR = "mortar";
-        public static final String PASATA_BOTTLE = "pasataBottle";
+        public static final String PASSATA_BOTTLE = "passataBottle";
     }
 
     public class Blocks

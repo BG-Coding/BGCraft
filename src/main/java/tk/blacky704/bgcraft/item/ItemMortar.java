@@ -11,5 +11,6 @@ public class ItemMortar extends ItemBG
     {
         super();
         this.setUnlocalizedName(Names.Items.MORTAR);
+        this.setContainerItem(this);
     }
 }

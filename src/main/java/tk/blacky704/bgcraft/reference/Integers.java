@@ -14,6 +14,6 @@ public class Integers
     {
         public static final int TOMATO = 2;
         public static final int DRIED_TOMATO = 4;
-        public static final int PASATA_BOTTLE = 4;
+        public static final int PASATA_BOTTLE = 2;
     }
 }

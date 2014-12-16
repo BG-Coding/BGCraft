@@ -9,12 +9,12 @@ import tk.blacky704.bgcraft.reference.Names;
 /**
  * @author Blacky
  */
-public class ItemPasataBottle extends ItemFoodBG
+public class ItemPassataBottle extends ItemFoodBG
 {
-    public ItemPasataBottle(int food)
+    public ItemPassataBottle(int food)
     {
         super(food);
-        this.setUnlocalizedName(Names.Items.PASATA_BOTTLE);
+        this.setUnlocalizedName(Names.Items.PASSATA_BOTTLE);
     }
 
     @Override
