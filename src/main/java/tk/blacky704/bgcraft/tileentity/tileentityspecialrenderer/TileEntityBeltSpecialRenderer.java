@@ -144,7 +144,7 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         //renderBase();
         glCallList(baseList);
         //renderRidges();
-        glTranslated(0,0,-belt.animationProgress/50f/2);
+        glTranslated(0,0,-belt.animationProgress/belt.animationProgressMax/2);
         glCallList(ridgeList);
         glPopMatrix();
 

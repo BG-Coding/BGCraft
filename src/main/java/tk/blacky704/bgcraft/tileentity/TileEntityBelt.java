@@ -1,6 +1,7 @@
 package tk.blacky704.bgcraft.tileentity;
 
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 /**
  * @author goeiecool9999
@@ -8,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityBelt extends TileEntity
 {
     public double animationProgress = 0;
-    public double animationProgressMax = 50;
+    public double animationProgressMax = 20;
 
     public TileEntityBelt()
     {
@@ -26,6 +27,19 @@ public class TileEntityBelt extends TileEntity
             animationProgress++;
             animationProgress -= animationProgressMax;
         }
+
+        World w = this.getWorldObj();
+        TileEntityBelt other = (TileEntityBelt) w.getTileEntity(this.xCoord,this.yCoord,this.zCoord-1);
+        if(other != null)
+        {
+            other.setAnimationProgress(this.animationProgress);
+        }
+
+    }
+
+    public void setAnimationProgress(double animationProgress)
+    {
+        this.animationProgress = animationProgress;
     }
 
 
