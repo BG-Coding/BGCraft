@@ -7,7 +7,8 @@ import net.minecraft.tileentity.TileEntity;
  */
 public class TileEntityBelt extends TileEntity
 {
-    public int animationProgress = 0;
+    public double animationProgress = 0;
+    public double animationProgressMax = 50;
 
     public TileEntityBelt()
     {
@@ -16,14 +17,14 @@ public class TileEntityBelt extends TileEntity
 
     public void updateEntity()
     {
-        if (animationProgress < 100)
+        if (animationProgress < animationProgressMax)
         {
             animationProgress++;
         }
         else
         {
             animationProgress++;
-            animationProgress -= 100;
+            animationProgress -= animationProgressMax;
         }
     }
 
