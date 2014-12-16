@@ -15,7 +15,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.oredict.OreDictionary;
 import tk.blacky704.bgcraft.block.BlockPizzaOven;
 import tk.blacky704.bgcraft.init.ModItems;
+import tk.blacky704.bgcraft.reference.Integers;
 import tk.blacky704.bgcraft.reference.Names;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Blacky
@@ -135,21 +139,23 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemStack)
     {
-        String oreDic = OreDictionary.getOreName(Item.getIdFromItem(itemStack.getItem()));
         if (slot == 0)
         {
-            if (oreDic.startsWith("food") || oreDic.startsWith("crop") || oreDic.toLowerCase().contains("flour"))
+            int[] ids = OreDictionary.getOreIDs(itemStack);
+            for(int i : ids)
             {
-                return true;
+                if(OreDictionary.getOreName(i).startsWith("food") || OreDictionary.getOreName(i).startsWith("crop") ||OreDictionary.getOreName(i).toLowerCase().contains("flour"))
+                {
+                    return true;
+                }
             }
+
             Item item = itemStack.getItem();
             if (item == Items.porkchop) return true;
             if (item == Items.fish) return true;
             if (item == Items.beef) return true;
             if (item == Items.chicken) return true;
             if (item == Items.potato) return true;
-
-            if(item == ModItems.tomato) return true;
         }
         else if (slot == 1 && isItemFuel(itemStack))
         {
