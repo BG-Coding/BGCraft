@@ -19,7 +19,7 @@ public class ModItems
     public static final ItemTomato tomato = new ItemTomato(Integers.FoodLevels.TOMATO);
     public static final ItemDriedTomato driedTomato = new ItemDriedTomato(Integers.FoodLevels.DRIED_TOMATO);
     public static final ItemMortar mortar = new ItemMortar();
-    public static final ItemPassataBottle pasataBottle = new ItemPassataBottle(Integers.FoodLevels.PASATA_BOTTLE);
+    public static final ItemPassataBottle pasataBottle = new ItemPassataBottle(Integers.FoodLevels.PASSATA_BOTTLE);
 
     public static void init()
     {
