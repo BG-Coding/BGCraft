@@ -1,12 +1,13 @@
 package tk.blacky704.bgcraft.tileentity;
 
+import cofh.api.energy.TileEnergyHandler;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 /**
  * @author goeiecool9999
  */
-public class TileEntityBelt extends TileEntity
+public class TileEntityBelt extends TileEnergyHandler
 {
     public double animationProgress = 0;
     public double animationProgressMax = 20;

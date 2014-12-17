@@ -1,0 +1,6 @@
+updated forge, run
+"gradlew clean"
+"gradlew setupDecompWorkspace"
+"gradlew idea"
+done.
+(u can use the terminal in the bottom, idea will update automatically)
