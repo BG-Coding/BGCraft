@@ -16,4 +16,9 @@ public class Integers
         public static final int DRIED_TOMATO = 4;
         public static final int PASSATA_BOTTLE = 2;
     }
+
+    public class EnergyUsages
+    {
+        public static final int BELT = 10;
+    }
 }
