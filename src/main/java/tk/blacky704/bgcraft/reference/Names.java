@@ -22,6 +22,7 @@ public class Names
         public static final String PIZZA_OVEN_ACTIVE = "pizzaOvenActive";
         public static final String BELT = "belt";
         public static final String TOMATO_PLANT = "tomatoPlant";
+        public static final String CREATIVE_GENERATOR = "creativeGenerator";
     }
 
     public class Containers
@@ -33,5 +34,6 @@ public class Names
     {
         public static final String PIZZA_OVEN = "tilePizzaOven";
         public static final String BELT = "tileEntityBelt";
+        public static final String CREATIVE_GENERATOR = "tileCreativeGenerator";
     }
 }

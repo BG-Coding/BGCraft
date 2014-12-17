@@ -19,7 +19,7 @@ public class ModItems
     public static final ItemTomato tomato = new ItemTomato(Integers.FoodLevels.TOMATO);
     public static final ItemDriedTomato driedTomato = new ItemDriedTomato(Integers.FoodLevels.DRIED_TOMATO);
     public static final ItemMortar mortar = new ItemMortar();
-    public static final ItemPassataBottle pasataBottle = new ItemPassataBottle(Integers.FoodLevels.PASSATA_BOTTLE);
+    public static final ItemPassataBottle passataBottle = new ItemPassataBottle(Integers.FoodLevels.PASSATA_BOTTLE);
 
     public static void init()
     {
@@ -28,7 +28,7 @@ public class ModItems
         GameRegistry.registerItem(tomato, Names.Items.TOMATO);
         GameRegistry.registerItem(driedTomato, Names.Items.DRIED_TOMATO);
         GameRegistry.registerItem(mortar, Names.Items.MORTAR);
-        GameRegistry.registerItem(pasataBottle, Names.Items.PASSATA_BOTTLE);
+        GameRegistry.registerItem(passataBottle, Names.Items.PASSATA_BOTTLE);
     }
 
     public static void initOreDic()
