@@ -24,7 +24,6 @@ import java.util.Random;
 public class BlockTomatoPlant extends BlockCropsBG
 {
     private IIcon[] icons = new IIcon[8];
-    //private IIcon icon;
     private int lightLevel = 11;
 
     public BlockTomatoPlant()
