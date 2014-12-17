@@ -14,12 +14,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.oredict.OreDictionary;
 import tk.blacky704.bgcraft.block.BlockPizzaOven;
-import tk.blacky704.bgcraft.init.ModItems;
-import tk.blacky704.bgcraft.reference.Integers;
 import tk.blacky704.bgcraft.reference.Names;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Blacky
@@ -70,7 +65,7 @@ public class TileEntityPizzaOven extends TileEntity implements ISidedInventory
             }
             else
             {
-                itemStack = this.inventory[slot].splitStack(amount);
+                this.inventory[slot].splitStack(amount);
                 if (this.inventory[slot].stackSize == 0)
                 {
                     this.inventory[slot] = null;
