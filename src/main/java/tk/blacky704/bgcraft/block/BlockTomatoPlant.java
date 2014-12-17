@@ -31,6 +31,7 @@ public class BlockTomatoPlant extends BlockCropsBG
     {
         super();
         this.setBlockName(Names.Blocks.TOMATO_PLANT);
+        this.setCreativeTab(null);
     }
 
     @Override
