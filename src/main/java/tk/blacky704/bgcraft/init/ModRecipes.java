@@ -3,7 +3,6 @@ package tk.blacky704.bgcraft.init;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tk.blacky704.bgcraft.reference.Reference;
 
 /**
@@ -20,7 +19,7 @@ public class ModRecipes
         //ShapedOreRecipes
 
         //ShapelessRecipes
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.pasataBottle), new ItemStack(ModItems.mortar), new ItemStack(ModItems.tomato), new ItemStack(ModItems.tomato), new ItemStack(ModItems.tomato), new ItemStack(Items.glass_bottle));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.passataBottle), new ItemStack(ModItems.mortar), new ItemStack(ModItems.tomato), new ItemStack(ModItems.tomato), new ItemStack(ModItems.tomato), new ItemStack(Items.glass_bottle));
         //ShapelessOreRecipes
 
         //Smelting
