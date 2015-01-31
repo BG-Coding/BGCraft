@@ -1,7 +1,6 @@
 package tk.blacky704.bgcraft.tileentity;
 
 import cofh.api.energy.TileEnergyHandler;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import tk.blacky704.bgcraft.reference.Integers;
@@ -13,6 +12,7 @@ public class TileEntityBelt extends TileEnergyHandler
 {
     public double animationProgress = 0;
     public double animationProgressMax = 20;
+    public double animationSpeed = 1;
 
     public TileEntityBelt()
     {
@@ -25,11 +25,11 @@ public class TileEntityBelt extends TileEnergyHandler
 //        {
             if (animationProgress < animationProgressMax)
             {
-                animationProgress++;
+                animationProgress += animationSpeed;
             }
             else
             {
-                animationProgress++;
+                animationProgress += animationSpeed;
                 animationProgress -= animationProgressMax;
             }
 
