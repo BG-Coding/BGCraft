@@ -2,12 +2,12 @@ package tk.blacky704.bgcraft.init;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import tk.blacky704.bgcraft.block.BlockBelt;
 import tk.blacky704.bgcraft.reference.Names;
 import tk.blacky704.bgcraft.reference.Reference;
 import tk.blacky704.bgcraft.tileentity.TileEntityBelt;
 import tk.blacky704.bgcraft.tileentity.TileEntityCreativeGenerator;
 import tk.blacky704.bgcraft.tileentity.TileEntityPizzaOven;
-import tk.blacky704.bgcraft.tileentity.tileentityspecialrenderer.TileEntityBeltSpecialRenderer;
 
 /**
  * @author Blacky
@@ -18,7 +18,7 @@ public class ModTileEntities
     public static void init()
     {
         GameRegistry.registerTileEntity(TileEntityPizzaOven.class, Names.TileEntities.PIZZA_OVEN);
-        ClientRegistry.registerTileEntity(TileEntityBelt.class, "TileEntityBelt", new TileEntityBeltSpecialRenderer());
+        ClientRegistry.registerTileEntity(TileEntityBelt.class, Names.TileEntities.BELT, BlockBelt.renderer);
         GameRegistry.registerTileEntity(TileEntityCreativeGenerator.class, Names.TileEntities.CREATIVE_GENERATOR);
     }
 }

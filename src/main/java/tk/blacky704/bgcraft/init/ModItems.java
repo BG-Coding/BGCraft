@@ -14,6 +14,7 @@ import tk.blacky704.bgcraft.reference.Reference;
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModItems
 {
+    public static final ItemBeltDebugger beltDebugger = new ItemBeltDebugger();
     public static final ItemFirebrick firebrick = new ItemFirebrick();
     public static final ItemTomatoSeeds tomatoSeeds = new ItemTomatoSeeds(ModBlocks.tomatoPlant, Blocks.farmland);
     public static final ItemTomato tomato = new ItemTomato(Integers.FoodLevels.TOMATO);
@@ -23,6 +24,7 @@ public class ModItems
 
     public static void init()
     {
+        GameRegistry.registerItem(beltDebugger, Names.Items.BELT_DEBUGGER);
         GameRegistry.registerItem(firebrick, Names.Items.FIRE_BRICK);
         GameRegistry.registerItem(tomatoSeeds, Names.Items.TOMATO_SEEDS);
         GameRegistry.registerItem(tomato, Names.Items.TOMATO);

@@ -13,6 +13,7 @@ public class Names
         public static final String DRIED_TOMATO = "driedTomato";
         public static final String MORTAR = "mortar";
         public static final String PASSATA_BOTTLE = "passataBottle";
+        public static final String BELT_DEBUGGER = "beltDebugger";
     }
 
     public class Blocks
