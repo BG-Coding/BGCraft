@@ -33,7 +33,7 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         renderBase();
         glEndList();
         glNewList(ridgeList, GL_COMPILE);
-        renderRidge();
+        renderRidge(255, 255, 255);
         glEndList();
     }
 
@@ -79,12 +79,12 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         t.draw();
     }
 
-    private static void renderRidge()
+    private static void renderRidge(int r, int g, int b)
     {
         Tessellator t = Tessellator.instance;
         t.startDrawingQuads();
         t.setNormal(0, 0, 0);
-        t.setColorOpaque(255, 255, 255);
+        t.setColorOpaque(r, g, b);
 
         //back panels
 
@@ -149,52 +149,73 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         TileEntityBelt belt = (TileEntityBelt) tileEntity;
         glPushMatrix();
 
-
         glTranslated(posX, posY, posZ);
         this.bindTexture(Texture);
-        //glCallList(baseList);
         glTranslated(0.5, 0, 0.5);
         glRotated(0, 0, 1, 0);
         glTranslated(-0.5, 0, -0.5);
-        renderBase();
-        if (belt.isLast() || belt.isFirst())
+        glCallList(baseList);
+        double smoothedAnimationProgress = (belt.animationProgress + p_147500_8_ * belt.animationSpeed);
+        double smoothedCappedAnimationProgress = smoothedAnimationProgress;
+        if (smoothedAnimationProgress > belt.animationProgressMax)
+        {
+            smoothedCappedAnimationProgress = belt.animationProgressMax;
+        }
+        double smoothedScaledAnimationProgress = smoothedAnimationProgress / belt.animationProgressMax;
+        double smoothedScaledCappedAnimationProgress = smoothedCappedAnimationProgress / belt.animationProgressMax;
+
+        if (belt.isFirst() && belt.isLast())
+        {
+            glPopMatrix();
+            glEnable(GL_LIGHTING);
+            return;
+        } else if (belt.isFirst())
         {
             glPushMatrix();
-        }
-        double smoothedAnimationProgress = (belt.animationProgress + p_147500_8_ * belt.animationSpeed);
-        if (belt.isFirst())
-        {
-            double smoothedScaledAnimationProgress = smoothedAnimationProgress / belt.animationProgressMax;
+            glTranslated(0, 0, smoothedAnimationProgress / belt.animationProgressMax / 2);
+            renderRidge(belt.r, belt.g, belt.b);
+            glTranslated(0, 0, 0.5);
+            renderRidge(belt.r, belt.g, belt.b);
+            glPopMatrix();
+
+            glPushMatrix();
             glTranslated(0, topHeight, 0);
+            glScaled(1, smoothedScaledCappedAnimationProgress, smoothedScaledCappedAnimationProgress);
+            glTranslated(0, -topHeight, 0);
             if (smoothedScaledAnimationProgress > 1)
             {
-                glScaled(1, smoothedScaledAnimationProgress - (smoothedScaledAnimationProgress - 1), 1);
+                glTranslated(0, 0, (smoothedAnimationProgress - belt.animationProgressMax) / belt.animationProgressMax / 2);
+            }
+            renderRidge(belt.r, belt.g, belt.b);
+            glPopMatrix();
+        } else if (belt.isLast())
+        {
+            if (smoothedAnimationProgress <= belt.animationProgressMax)
+            {
+                glPushMatrix();
+                glTranslated(0, 0, (smoothedAnimationProgress / belt.animationProgressMax) / 2);
+                renderRidge(belt.r, belt.g, belt.b);
+                glPopMatrix();
+            }
+
+            glTranslated(0, 0, 0.5);
+            glTranslated(0, topHeight, 0.5);
+            if (smoothedScaledAnimationProgress <= 1)
+            {
+                glScaled(1, 1 - smoothedScaledCappedAnimationProgress, 1 - smoothedScaledCappedAnimationProgress);
             } else
             {
-                glScaled(1, smoothedScaledAnimationProgress, 1);
+                glScaled(1, 1 - (smoothedScaledAnimationProgress - 1), 1 - (smoothedScaledAnimationProgress - 1));
             }
-            glTranslated(0, -topHeight, 0);
-        }
-        glTranslated(0, 0, (smoothedAnimationProgress / belt.animationProgressMax) / 2);
-        glCallList(ridgeList);
-        if (belt.isFirst())
+            glTranslated(0, -topHeight, -0.5);
+            renderRidge(belt.r, belt.g, belt.b);
+        } else
         {
-            glPopMatrix();
             glTranslated(0, 0, (smoothedAnimationProgress / belt.animationProgressMax) / 2);
+            renderRidge(belt.r, belt.g, belt.b);
+            glTranslated(0, 0, 0.5);
+            renderRidge(belt.r, belt.g, belt.b);
         }
-        if (belt.isLast())
-        {
-            glPopMatrix();
-        }
-        glTranslated(0, 0, 0.5);
-        if (belt.isLast())
-        {
-            glTranslated(0, topHeight, 0);
-            glScaled(1, (belt.animationProgressMax - smoothedAnimationProgress) / belt.animationProgressMax, 1);
-            glTranslated(0, -topHeight, 0);
-        }
-        glCallList(ridgeList);
-
 
         glPopMatrix();
         glEnable(GL_LIGHTING);
