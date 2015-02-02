@@ -5,7 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author goeiecool9999
@@ -14,7 +14,7 @@ public class TileEntityBelt extends TileEnergyHandler
 {
     public double animationProgress = 0;
     public final double animationProgressMax = 20;
-    public double animationSpeed = 0;
+    public double animationSpeed = 1;
 
     public int r = 255;
     public int g = 255;
@@ -41,27 +41,49 @@ public class TileEntityBelt extends TileEnergyHandler
             syncPreviousBelt(this.animationProgress, this.animationSpeed);
         }
 
-        AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(xCoord, yCoord + 1, zCoord, xCoord + 1, yCoord + 1.2, zCoord + 1);
-        List list = worldObj.getEntitiesWithinAABB(Entity.class, bb);
+        if (isFirst())
+        {
+            ArrayList<Entity> list = new ArrayList<Entity>();
+            moveExcludingEntities(list);
+            nextBeltPush(list);
+        }
+    }
+
+    public void moveExcludingEntities(ArrayList<Entity> entities)
+    {
+        AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(xCoord, yCoord + 1, zCoord, xCoord + 1, yCoord + 1.01, zCoord + 1);
+        ArrayList list = (ArrayList) worldObj.getEntitiesWithinAABB(Entity.class, bb);
+        for (Object e : entities)
+        {
+            list.remove(e);
+        }
         for (Object object : list)
         {
             Entity e = (Entity) object;
-            e.setVelocity(e.motionX, e.motionY, animationSpeed / animationProgressMax / 2);
-            //e.addVelocity(0,0,animationSpeed/animationProgressMax/2);
+            e.moveEntity(0, 0, animationSpeed / animationProgressMax / 2);
+            e.onGround = true;
+            entities.add(e);
         }
-
     }
 
-    //Todo: if (isFirst()) { add velocity to all entities in bb, then pass a list off all entities affected to the next belt. Exclude affected entities from the function of the next belt.
+    public boolean isFirst()
+    {
+        return getPreviousBelt() == null;
+    }
 
     public boolean isLast()
     {
-        if (getNextBelt() == null)
-        {
-            return true;
-        }
+        return getNextBelt() == null;
+    }
 
-        return false;
+    private void nextBeltPush(ArrayList<Entity> entities)
+    {
+        TileEntityBelt nextBelt = getNextBelt();
+        if (nextBelt != null)
+        {
+            nextBelt.moveExcludingEntities(entities);
+            nextBelt.nextBeltPush(entities);
+        }
     }
 
     private void syncPreviousBelt(double newProgress, double newSpeed)
@@ -77,7 +99,7 @@ public class TileEntityBelt extends TileEnergyHandler
     private TileEntityBelt getPreviousBelt()
     {
         TileEntity entity = worldObj.getTileEntity(xCoord, yCoord, zCoord - 1);
-        if (entity instanceof TileEntityBelt)
+        if (entity != null && entity instanceof TileEntityBelt)
         {
             return (TileEntityBelt) entity;
         } else
@@ -89,7 +111,7 @@ public class TileEntityBelt extends TileEnergyHandler
     private TileEntityBelt getNextBelt()
     {
         TileEntity entity = worldObj.getTileEntity(xCoord, yCoord, zCoord + 1);
-        if (entity instanceof TileEntityBelt)
+        if (entity != null && entity instanceof TileEntityBelt)
         {
             return (TileEntityBelt) entity;
         } else

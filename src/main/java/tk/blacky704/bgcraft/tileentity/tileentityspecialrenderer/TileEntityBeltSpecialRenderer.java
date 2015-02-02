@@ -33,7 +33,7 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         renderBase();
         glEndList();
         glNewList(ridgeList, GL_COMPILE);
-        renderRidges(255, 255, 255);
+        renderRidge();
         glEndList();
     }
 
@@ -53,8 +53,8 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         //bottom
         t.addVertexWithUV(1, topHeight, 0, 0, 0);
         t.addVertexWithUV(0, topHeight, 0, 1, 0);
-        t.addVertexWithUV(0, topHeight, 1, 1, 1);
-        t.addVertexWithUV(1, topHeight, 1, 0, 1);
+        t.addVertexWithUV(0, topHeight, 1, 1, 2);
+        t.addVertexWithUV(1, topHeight, 1, 0, 2);
         //side1
         t.addVertexWithUV(0, topHeight, 0, 0, 0);
         t.addVertexWithUV(1, topHeight, 0, 1, 0);
@@ -79,56 +79,28 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         t.draw();
     }
 
-    private static void renderRidges(int r, int g, int b)
+    private static void renderRidge()
     {
         Tessellator t = Tessellator.instance;
         t.startDrawingQuads();
         t.setNormal(0, 0, 0);
-        t.setColorOpaque(r, g, b);
+        t.setColorOpaque(255, 255, 255);
 
         //back panels
 
         t.setTranslation(0, 0, 0);
-        t.setTextureUV(0, 0);
-        t.addVertex(1, 1, 0);
-        t.setTextureUV(1, 0);
-        t.addVertex(1, topHeight, 0);
-        t.setTextureUV(1, 1);
-        t.addVertex(0, topHeight, 0);
-        t.setTextureUV(0, 1);
-        t.addVertex(0, 1, 0);
-
-        t.setTranslation(0, 0, 0.5);
-        t.setTextureUV(0, 0);
-        t.addVertex(1, 1, 0);
-        t.setTextureUV(1, 0);
-        t.addVertex(1, topHeight, 0);
-        t.setTextureUV(1, 1);
-        t.addVertex(0, topHeight, 0);
-        t.setTextureUV(0, 1);
-        t.addVertex(0, 1, 0);
+        t.addVertexWithUV(1, 1, 0, 0, 0);
+        t.addVertexWithUV(1, topHeight, 0, 1, 0);
+        t.addVertexWithUV(0, topHeight, 0, 1, 1);
+        t.addVertexWithUV(0, 1, 0, 0, 1);
 
         //diagonal panels
 
         t.setTranslation(0, 0, 0);
-        t.setTextureUV(0, 0);
-        t.addVertex(0, 1, 0);
-        t.setTextureUV(1, 0);
-        t.addVertex(0, topHeight, 0.5);
-        t.setTextureUV(1, 1);
-        t.addVertex(1, topHeight, 0.5);
-        t.setTextureUV(0, 1);
-        t.addVertex(1, 1, 0);
-
-        t.setTranslation(0, 0, 0.5);
-        t.setTextureUV(0, 0);
-        t.addVertex(0, 1, 0);
-        t.setTextureUV(1, 0);
-        t.addVertex(0, topHeight, 0.5);
-        t.setTextureUV(1, 1);
-        t.addVertex(1, topHeight, 0.5);
-        t.setTextureUV(0, 1);
-        t.addVertex(1, 1, 0);
+        t.addVertexWithUV(0, 1, 0, 0, 0);
+        t.addVertexWithUV(0, topHeight, 0.5, 1, 0);
+        t.addVertexWithUV(1, topHeight, 0.5, 1, 1);
+        t.addVertexWithUV(1, 1, 0, 0, 1);
 
         t.draw();
 
@@ -139,41 +111,34 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         //triangles
         //Negative X
         t.setTranslation(0, 0, 0);
-        t.setTextureUV(0, 1);
-        t.addVertex(0, 1, 0);
-        t.setTextureUV(0, 0);
-        t.addVertex(0, topHeight, 0);
-        t.setTextureUV(1, 0);
-        t.addVertex(0, topHeight, 0.5);
-
-        t.setTranslation(0, 0, 0.5);
-        t.setTextureUV(0, 1);
-        t.addVertex(0, 1, 0);
-        t.setTextureUV(0, 0);
-        t.addVertex(0, topHeight, 0);
-        t.setTextureUV(1, 0);
-        t.addVertex(0, topHeight, 0.5);
+        t.addVertexWithUV(0, 1, 0, 0, 1);
+        t.addVertexWithUV(0, topHeight, 0, 0, 0);
+        t.addVertexWithUV(0, topHeight, 0.5, 1, 0);
 
         // positive X
 
         t.setTranslation(0, 0, 0);
-        t.setTextureUV(0, 1);
-        t.addVertex(1, 1, 0);
-        t.setTextureUV(1, 0);
-        t.addVertex(1, topHeight, 0.5);
-        t.setTextureUV(0, 0);
-        t.addVertex(1, topHeight, 0);
-
-        t.setTranslation(0, 0, 0.5);
-        t.setTextureUV(0, 1);
-        t.addVertex(1, 1, 0);
-        t.setTextureUV(1, 0);
-        t.addVertex(1, topHeight, 0.5);
-        t.setTextureUV(0, 0);
-        t.addVertex(1, topHeight, 0);
+        t.addVertexWithUV(1, 1, 0, 0, 1);
+        t.addVertexWithUV(1, topHeight, 0.5, 1, 0);
+        t.addVertexWithUV(1, topHeight, 0, 0, 0);
 
         t.draw();
         t.setTranslation(0, 0, 0);
+    }
+
+    public void renderModelWithoutAnimation()
+    {
+        glDisable(GL_LIGHTING);
+        glPushMatrix();
+        this.bindTexture(Texture);
+        glTranslated(-0.5, -0.5, -0.5);
+        glCallList(baseList);
+        glCallList(ridgeList);
+        glTranslated(0, 0, 0.5);
+        glCallList(ridgeList);
+        glTranslated(0.5, 0, 0.5);
+        glPopMatrix();
+        glEnable(GL_LIGHTING);
     }
 
     @SideOnly(Side.CLIENT)
@@ -183,16 +148,54 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         glDisable(GL_LIGHTING);
         TileEntityBelt belt = (TileEntityBelt) tileEntity;
         glPushMatrix();
+
+
         glTranslated(posX, posY, posZ);
         this.bindTexture(Texture);
-        renderBase();
         //glCallList(baseList);
         glTranslated(0.5, 0, 0.5);
         glRotated(0, 0, 1, 0);
         glTranslated(-0.5, 0, -0.5);
-        glTranslated(0, 0, ((belt.animationProgress + p_147500_8_ * belt.animationSpeed) / belt.animationProgressMax) / 2);
-        renderRidges(belt.r, belt.g, belt.b);
-        //glCallList(ridgeList);
+        renderBase();
+        if (belt.isLast() || belt.isFirst())
+        {
+            glPushMatrix();
+        }
+        double smoothedAnimationProgress = (belt.animationProgress + p_147500_8_ * belt.animationSpeed);
+        if (belt.isFirst())
+        {
+            double smoothedScaledAnimationProgress = smoothedAnimationProgress / belt.animationProgressMax;
+            glTranslated(0, topHeight, 0);
+            if (smoothedScaledAnimationProgress > 1)
+            {
+                glScaled(1, smoothedScaledAnimationProgress - (smoothedScaledAnimationProgress - 1), 1);
+            } else
+            {
+                glScaled(1, smoothedScaledAnimationProgress, 1);
+            }
+            glTranslated(0, -topHeight, 0);
+        }
+        glTranslated(0, 0, (smoothedAnimationProgress / belt.animationProgressMax) / 2);
+        glCallList(ridgeList);
+        if (belt.isFirst())
+        {
+            glPopMatrix();
+            glTranslated(0, 0, (smoothedAnimationProgress / belt.animationProgressMax) / 2);
+        }
+        if (belt.isLast())
+        {
+            glPopMatrix();
+        }
+        glTranslated(0, 0, 0.5);
+        if (belt.isLast())
+        {
+            glTranslated(0, topHeight, 0);
+            glScaled(1, (belt.animationProgressMax - smoothedAnimationProgress) / belt.animationProgressMax, 1);
+            glTranslated(0, -topHeight, 0);
+        }
+        glCallList(ridgeList);
+
+
         glPopMatrix();
         glEnable(GL_LIGHTING);
     }

@@ -26,7 +26,7 @@ public class ItemBeltDebugger extends ItemBG
         if (tileEntity instanceof TileEntityBelt)
         {
             TileEntityBelt belt = (TileEntityBelt) tileEntity;
-            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf(belt.isLast())));
+            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf(belt.isFirst())));
             int r = (int) (Math.random() * 255);
             int g = (int) (Math.random() * 255);
             int b = (int) (Math.random() * 255);
