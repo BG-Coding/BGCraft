@@ -1,5 +1,7 @@
 package tk.blacky704.bgcraft.reference;
 
+import net.minecraftforge.oredict.OreDictionary;
+
 /**
  * @author Blacky
  */
@@ -14,6 +16,15 @@ public class Names
         public static final String MORTAR = "mortar";
         public static final String PASSATA_BOTTLE = "passataBottle";
         public static final String BELT_DEBUGGER = "beltDebugger";
+
+        public class OreDic
+        {
+            public static final String TOMATO_SEEDS = "seedTomato";
+            public static final String TOMATO = "foodTomato";
+            public static final String DRIED_TOMATO = "foodDriedTomato";
+            public static final String MORTAR = "itemMortar";
+            public static final String FIRE_BRICK = "itemFireBrick";
+        }
     }
 
     public class Blocks
@@ -24,11 +35,11 @@ public class Names
         public static final String BELT = "belt";
         public static final String TOMATO_PLANT = "tomatoPlant";
         public static final String CREATIVE_GENERATOR = "creativeGenerator";
-    }
 
-    public class Containers
-    {
-        public static final String PIZZA_OVEN = "Pizza Oven";
+        public class OreDic
+        {
+
+        }
     }
 
     public class TileEntities
@@ -36,5 +47,10 @@ public class Names
         public static final String PIZZA_OVEN = "tilePizzaOven";
         public static final String BELT = "tileEntityBelt";
         public static final String CREATIVE_GENERATOR = "tileCreativeGenerator";
+    }
+
+    public class Containers
+    {
+        public static final String PIZZA_OVEN = "Pizza Oven";
     }
 }

@@ -114,10 +114,8 @@ public class TileEntityBelt extends TileEnergyHandler
         if (entity != null && entity instanceof TileEntityBelt)
         {
             return (TileEntityBelt) entity;
-        } else
-        {
-            return null;
         }
+        return null;
     }
 
     public void setAnimationProgressAndSpeed(double animationProgress, double animationSpeed)

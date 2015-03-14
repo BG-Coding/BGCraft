@@ -27,7 +27,6 @@ public class GuiHandler implements IGuiHandler
                     {
                         return new ContainerPizzaOven(player.inventory, (TileEntityPizzaOven) entity);
                     }
-                    return null;
             }
         }
         return null;
@@ -46,7 +45,6 @@ public class GuiHandler implements IGuiHandler
                     {
                         return new GuiPizzaOven(player.inventory, (TileEntityPizzaOven) entity);
                     }
-                    return null;
             }
         }
         return null;

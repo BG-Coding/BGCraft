@@ -1,4 +1,4 @@
-package tk.blacky704.bgcraft.block.BlockRenderingHandler;
+package tk.blacky704.bgcraft.block.handler;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;

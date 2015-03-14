@@ -4,10 +4,10 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import tk.blacky704.bgcraft.block.BlockRenderingHandler.BlockBeltHandler;
+import tk.blacky704.bgcraft.block.handler.BlockBeltHandler;
 import tk.blacky704.bgcraft.reference.Names;
 import tk.blacky704.bgcraft.tileentity.TileEntityBelt;
-import tk.blacky704.bgcraft.tileentity.tileentityspecialrenderer.TileEntityBeltSpecialRenderer;
+import tk.blacky704.bgcraft.tileentity.renderer.TileEntityBeltSpecialRenderer;
 
 /**
  * @author goeiecool9999

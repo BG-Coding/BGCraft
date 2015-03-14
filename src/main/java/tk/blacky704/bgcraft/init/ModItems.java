@@ -35,11 +35,11 @@ public class ModItems
 
     public static void initOreDic()
     {
-        OreDictionary.registerOre("seedTomato", tomatoSeeds);
-        OreDictionary.registerOre("foodTomato", tomato);
-        OreDictionary.registerOre("foodDriedTomato", driedTomato);
-        OreDictionary.registerOre("itemMortar", mortar);
-        OreDictionary.registerOre("itemFireBrick", firebrick);
+        OreDictionary.registerOre(Names.Items.OreDic.TOMATO_SEEDS, tomatoSeeds);
+        OreDictionary.registerOre(Names.Items.OreDic.TOMATO, tomato);
+        OreDictionary.registerOre(Names.Items.OreDic.DRIED_TOMATO, driedTomato);
+        OreDictionary.registerOre(Names.Items.OreDic.MORTAR, mortar);
+        OreDictionary.registerOre(Names.Items.OreDic.FIRE_BRICK, firebrick);
         OreDictionary.initVanillaEntries();
     }
 }

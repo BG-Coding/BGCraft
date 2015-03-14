@@ -1,4 +1,4 @@
-package tk.blacky704.bgcraft.tileentity.tileentityspecialrenderer;
+package tk.blacky704.bgcraft.tileentity.renderer;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
