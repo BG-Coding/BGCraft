@@ -23,7 +23,6 @@ public class BlockBeltHandler implements ISimpleBlockRenderingHandler
     {
 
         BlockBelt.renderer.renderModelWithoutAnimation();
-
     }
 
     @Override

@@ -18,7 +18,7 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
 {
 
     private static int baseList;
-    private static int ridgeList;
+    private static int RidgeList;
     private static final ResourceLocation Texture = new ResourceLocation(Reference.MOD_ID + ":textures/blocks/pizzaoven_bottom.png");
 
     public TileEntityBeltSpecialRenderer()
@@ -27,12 +27,12 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
 
         //intialize lists
         baseList = glGenLists(1);
-        ridgeList = glGenLists(1);
+        RidgeList = glGenLists(1);
         //compile lists.
         glNewList(baseList, GL_COMPILE);
         renderBase();
         glEndList();
-        glNewList(ridgeList, GL_COMPILE);
+        glNewList(RidgeList, GL_COMPILE);
         renderRidge(255, 255, 255);
         glEndList();
     }
@@ -133,9 +133,9 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         this.bindTexture(Texture);
         glTranslated(-0.5, -0.5, -0.5);
         glCallList(baseList);
-        glCallList(ridgeList);
+        glCallList(RidgeList);
         glTranslated(0, 0, 0.5);
-        glCallList(ridgeList);
+        glCallList(RidgeList);
         glTranslated(0.5, 0, 0.5);
         glPopMatrix();
         glEnable(GL_LIGHTING);
@@ -156,6 +156,7 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         glTranslated(-0.5, 0, -0.5);
         glCallList(baseList);
         double smoothedAnimationProgress = (belt.animationProgress + p_147500_8_ * belt.animationSpeed);
+        smoothedAnimationProgress %= 20;
         double smoothedCappedAnimationProgress = smoothedAnimationProgress;
         if (smoothedAnimationProgress > belt.animationProgressMax)
         {
@@ -173,9 +174,10 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
         {
             glPushMatrix();
             glTranslated(0, 0, smoothedAnimationProgress / belt.animationProgressMax / 2);
-            renderRidge(belt.r, belt.g, belt.b);
+            //renderRidge(belt.r, belt.g, belt.b);
+            glCallList(RidgeList);
             glTranslated(0, 0, 0.5);
-            renderRidge(belt.r, belt.g, belt.b);
+            glCallList(RidgeList);
             glPopMatrix();
 
             glPushMatrix();
@@ -186,7 +188,7 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
             {
                 glTranslated(0, 0, (smoothedAnimationProgress - belt.animationProgressMax) / belt.animationProgressMax / 2);
             }
-            renderRidge(belt.r, belt.g, belt.b);
+            glCallList(RidgeList);
             glPopMatrix();
         } else if (belt.isLast())
         {
@@ -194,7 +196,7 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
             {
                 glPushMatrix();
                 glTranslated(0, 0, (smoothedAnimationProgress / belt.animationProgressMax) / 2);
-                renderRidge(belt.r, belt.g, belt.b);
+                glCallList(RidgeList);
                 glPopMatrix();
             }
 
@@ -208,13 +210,13 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
                 glScaled(1, 1 - (smoothedScaledAnimationProgress - 1), 1 - (smoothedScaledAnimationProgress - 1));
             }
             glTranslated(0, -topHeight, -0.5);
-            renderRidge(belt.r, belt.g, belt.b);
+            glCallList(RidgeList);
         } else
         {
             glTranslated(0, 0, (smoothedAnimationProgress / belt.animationProgressMax) / 2);
-            renderRidge(belt.r, belt.g, belt.b);
+            glCallList(RidgeList);
             glTranslated(0, 0, 0.5);
-            renderRidge(belt.r, belt.g, belt.b);
+            glCallList(RidgeList);
         }
 
         glPopMatrix();

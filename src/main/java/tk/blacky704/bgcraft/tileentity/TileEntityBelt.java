@@ -1,8 +1,6 @@
 package tk.blacky704.bgcraft.tileentity;
 
 import cofh.api.energy.EnergyStorage;
-import cofh.api.energy.IEnergyHandler;
-import cofh.api.energy.IEnergyReceiver;
 import cofh.api.energy.TileEnergyHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,14 +8,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import tk.blacky704.bgcraft.reference.Integers;
-import tk.blacky704.bgcraft.util.LogHelper;
 
 import java.util.ArrayList;
 
 /**
  * @author goeiecool9999
  */
-public class TileEntityBelt extends TileEntity implements IEnergyReceiver, IEnergyHandler
+public class TileEntityBelt extends TileEnergyHandler
 {
     public double animationProgress = 0;
     public final double animationProgressMax = 20;
@@ -38,8 +35,8 @@ public class TileEntityBelt extends TileEntity implements IEnergyReceiver, IEner
     {
         if(!this.hasEnergyToOperate())
         {
-            animationSpeed = 0;
-            return;
+            //animationSpeed = 0;
+            //return;
         }
         if (isLast())
         {
@@ -49,7 +46,7 @@ public class TileEntityBelt extends TileEntity implements IEnergyReceiver, IEner
             } else
             {
                 animationProgress += animationSpeed;
-                animationProgress -= animationProgressMax;
+                animationProgress -= Math.floor(animationProgress / animationProgressMax) * animationProgressMax;
             }
 
             syncPreviousBelt(this.animationProgress, this.animationSpeed);
@@ -139,6 +136,11 @@ public class TileEntityBelt extends TileEntity implements IEnergyReceiver, IEner
         this.animationSpeed = animationSpeed;
     }
 
+    @Override
+    public AxisAlignedBB getRenderBoundingBox()
+    {
+        return super.getRenderBoundingBox().expand(0, 0, 1);
+    }
     //Energy implementation by Blacky.
 
     @Override
