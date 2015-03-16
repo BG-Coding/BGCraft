@@ -1,6 +1,7 @@
 package tk.blacky704.bgcraft.block;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -21,6 +22,12 @@ public class BlockBelt extends BlockBG implements ITileEntityProvider
         super();
         this.setBlockName(Names.Blocks.BELT);
         RenderingRegistry.registerBlockHandler(new BlockBeltHandler(renderID));
+    }
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int oldMeta)
+    {
+        super.breakBlock(world, x, y, z, block, oldMeta);
     }
 
     @Override

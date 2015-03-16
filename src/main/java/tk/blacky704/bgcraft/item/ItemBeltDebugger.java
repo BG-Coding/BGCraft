@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import tk.blacky704.bgcraft.reference.Names;
 import tk.blacky704.bgcraft.tileentity.TileEntityBelt;
 
@@ -26,7 +27,7 @@ public class ItemBeltDebugger extends ItemBG
         if (tileEntity instanceof TileEntityBelt)
         {
             TileEntityBelt belt = (TileEntityBelt) tileEntity;
-            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf(belt.isFirst())));
+            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("isFirst:") + String.valueOf(belt.isFirst())));
             int r = (int) (Math.random() * 255);
             int g = (int) (Math.random() * 255);
             int b = (int) (Math.random() * 255);
@@ -37,6 +38,9 @@ public class ItemBeltDebugger extends ItemBG
             belt.r = r;
             belt.g = g;
             belt.b = b;
+            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("energy:") + String.valueOf(belt.getEnergyStored(ForgeDirection.NORTH))));
+            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("operate:") + String.valueOf(belt.hasEnergyToOperate())));
+            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("entity:") + String.valueOf(belt.toString())));
         }
 
         return false;

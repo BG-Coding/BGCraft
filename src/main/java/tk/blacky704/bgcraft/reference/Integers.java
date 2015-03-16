@@ -17,8 +17,23 @@ public class Integers
         public static final int PASSATA_BOTTLE = 2;
     }
 
-    public class EnergyUsages
+    public class Energy
     {
-        public static final int BELT = 10;
+        public class Storage
+        {
+            public static final int BELT = 100000;
+        }
+        public class Usages
+        {
+            public static final int BELT = 10;
+        }
+        public class MaxReceive
+        {
+            public static final int BELT = 100;
+        }
+        public class MaxExtract
+        {
+
+        }
     }
 }

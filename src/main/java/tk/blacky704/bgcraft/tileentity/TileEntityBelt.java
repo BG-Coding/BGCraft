@@ -1,16 +1,23 @@
 package tk.blacky704.bgcraft.tileentity;
 
+import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyHandler;
+import cofh.api.energy.IEnergyReceiver;
 import cofh.api.energy.TileEnergyHandler;
 import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraftforge.common.util.ForgeDirection;
+import tk.blacky704.bgcraft.reference.Integers;
+import tk.blacky704.bgcraft.util.LogHelper;
 
 import java.util.ArrayList;
 
 /**
  * @author goeiecool9999
  */
-public class TileEntityBelt extends TileEnergyHandler
+public class TileEntityBelt extends TileEntity implements IEnergyReceiver, IEnergyHandler
 {
     public double animationProgress = 0;
     public final double animationProgressMax = 20;
@@ -20,13 +27,20 @@ public class TileEntityBelt extends TileEnergyHandler
     public int g = 255;
     public int b = 255;
 
+    protected EnergyStorage storage = new EnergyStorage(Integers.Energy.Storage.BELT, Integers.Energy.MaxReceive.BELT);
+
     public TileEntityBelt()
     {
-
     }
 
+    @Override
     public void updateEntity()
     {
+        if(!this.hasEnergyToOperate())
+        {
+            animationSpeed = 0;
+            return;
+        }
         if (isLast())
         {
             if (animationProgress < animationProgressMax)
@@ -47,6 +61,7 @@ public class TileEntityBelt extends TileEnergyHandler
             moveExcludingEntities(list);
             nextBeltPush(list);
         }
+        this.storage.modifyEnergyStored(storage.getEnergyStored() - Integers.Energy.Usages.BELT);
     }
 
     public void moveExcludingEntities(ArrayList<Entity> entities)
@@ -124,5 +139,54 @@ public class TileEntityBelt extends TileEnergyHandler
         this.animationSpeed = animationSpeed;
     }
 
+    //Energy implementation by Blacky.
 
+    @Override
+    public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate)
+    {
+        return storage.receiveEnergy(maxReceive, simulate);
+    }
+
+    @Override
+    public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate)
+    {
+        return storage.extractEnergy(maxExtract, simulate);
+    }
+
+    @Override
+    public int getEnergyStored(ForgeDirection from)
+    {
+        return storage.getEnergyStored();
+    }
+
+    @Override
+    public int getMaxEnergyStored(ForgeDirection from)
+    {
+        return storage.getMaxEnergyStored();
+    }
+
+    @Override
+    public boolean canConnectEnergy(ForgeDirection from)
+    {
+        return true;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        super.readFromNBT(nbt);
+        storage.readFromNBT(nbt);
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbt)
+    {
+        super.writeToNBT(nbt);
+        storage.writeToNBT(nbt);
+    }
+
+    public boolean hasEnergyToOperate()
+    {
+        return this.storage.getEnergyStored() > 10;
+    }
 }
