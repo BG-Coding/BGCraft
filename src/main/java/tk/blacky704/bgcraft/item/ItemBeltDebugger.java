@@ -28,18 +28,10 @@ public class ItemBeltDebugger extends ItemBG
         {
             TileEntityBelt belt = (TileEntityBelt) tileEntity;
             entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("isFirst:") + String.valueOf(belt.isFirst())));
-            int r = (int) (Math.random() * 255);
-            int g = (int) (Math.random() * 255);
-            int b = (int) (Math.random() * 255);
-            double max = Math.max(Math.max(r, g), b);
-            r *= max / 255;
-            g *= max / 255;
-            b *= max / 255;
-            belt.r = r;
-            belt.g = g;
-            belt.b = b;
-            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("energy:") + String.valueOf(belt.getEnergyStored(ForgeDirection.NORTH))));
+            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("energy:") + String.valueOf(belt.getEnergyStored())));
             entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("operate:") + String.valueOf(belt.hasEnergyToOperate())));
+            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("isRemote:") + String.valueOf(belt.getWorldObj().isRemote)));
+            entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("speed:") + String.valueOf(belt.animationSpeed)));
             entityPlayer.addChatMessage(new ChatComponentText(String.valueOf("entity:") + String.valueOf(belt.toString())));
         }
 

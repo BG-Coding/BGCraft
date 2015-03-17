@@ -21,7 +21,7 @@ public class Integers
     {
         public class Storage
         {
-            public static final int BELT = 100000;
+            public static final int BELT = 10000;
         }
         public class Usages
         {
@@ -29,11 +29,9 @@ public class Integers
         }
         public class MaxReceive
         {
-            public static final int BELT = 100;
         }
         public class MaxExtract
         {
-
         }
     }
 }
