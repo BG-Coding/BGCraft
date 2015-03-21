@@ -11,30 +11,29 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * @author Blacky
  */
-public class TileEnergyEntity extends TileEntity implements IEnergyHandler, IEnergyStorage
+public class TileEnergyStorage extends TileEntity implements IEnergyStorage
 {
     private int capacity;
     private int maxReceive;
     private int maxExtract;
     private int energy;
 
-    public TileEnergyEntity(int capacity)
+    public TileEnergyStorage(int capacity)
     {
         this(capacity, capacity, capacity);
     }
 
-    public TileEnergyEntity(int capacity, int maxTransfer)
+    public TileEnergyStorage(int capacity, int maxTransfer)
     {
         this(capacity, maxTransfer, maxTransfer);
     }
 
-    public TileEnergyEntity(int capacity, int maxReceive, int maxExtract)
+    public TileEnergyStorage(int capacity, int maxReceive, int maxExtract)
     {
         this.capacity = capacity;
         this.maxReceive = maxReceive;
@@ -167,36 +166,6 @@ public class TileEnergyEntity extends TileEntity implements IEnergyHandler, IEne
     @Override
     public int getMaxEnergyStored() {
 
-        return capacity;
-    }
-
-    @Override
-    public boolean canConnectEnergy(ForgeDirection from)
-    {
-        return true;
-    }
-
-    @Override
-    public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate)
-    {
-        return this.receiveEnergy(maxReceive, simulate);
-    }
-
-    @Override
-    public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate)
-    {
-        return this.extractEnergy(maxExtract, simulate);
-    }
-
-    @Override
-    public int getEnergyStored(ForgeDirection from)
-    {
-        return energy;
-    }
-
-    @Override
-    public int getMaxEnergyStored(ForgeDirection from)
-    {
         return capacity;
     }
 

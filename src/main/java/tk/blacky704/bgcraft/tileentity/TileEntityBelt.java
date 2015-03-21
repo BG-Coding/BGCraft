@@ -1,25 +1,18 @@
 package tk.blacky704.bgcraft.tileentity;
 
 import cofh.api.energy.*;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import tk.blacky704.bgcraft.reference.Integers;
-import tk.blacky704.bgcraft.util.LogHelper;
 
 import java.util.ArrayList;
 
 /**
  * @author goeiecool9999
  */
-public class TileEntityBelt extends TileEnergyEntity implements IEnergyConnection
+public class TileEntityBelt extends TileEnergyHandler
 {
     public double animationProgress = 0;
     public final double animationProgressMax = 20;
@@ -28,6 +21,8 @@ public class TileEntityBelt extends TileEnergyEntity implements IEnergyConnectio
     public int r = 255;
     public int g = 255;
     public int b = 255;
+
+    private ForgeDirection from = ForgeDirection.DOWN;
 
     public TileEntityBelt()
     {
@@ -61,7 +56,7 @@ public class TileEntityBelt extends TileEnergyEntity implements IEnergyConnectio
         this.nextBeltPush(new ArrayList<Entity>());
 
         this.setEnergyStored(this.getEnergyStored() - Integers.Energy.Usages.BELT);
-        this.syncEnergyWithBeltLine();
+        this.syncEnergyWithBeltLine(this.from);
     }
 
     public void moveExcludingEntities(ArrayList<Entity> entities)
@@ -111,22 +106,30 @@ public class TileEntityBelt extends TileEnergyEntity implements IEnergyConnectio
         }
     }
 
-    private void syncEnergyWithBeltLine()
+    private void syncEnergyWithBeltLine(ForgeDirection from)
     {
-        TileEntityBelt next = getNextBelt();
-        if(next != null)
+        if (from.equals(ForgeDirection.NORTH) || from.equals(ForgeDirection.DOWN))
         {
-            if(next.getEnergyStored() < this.getEnergyStored())
+            this.from = from.equals(ForgeDirection.DOWN) ? ForgeDirection.NORTH : from;
+            if (this.getNextBelt() != null)
             {
-                this.modifyEnergyStored(-next.receiveEnergy(Integers.Energy.Storage.BELT, false));
+                if(this.getNextBelt().getEnergyStored() < this.getEnergyStored())
+                {
+                    this.extractEnergy(this.getNextBelt().receiveEnergy(this.getEnergyStored(), false), false);
+                    this.getNextBelt().syncEnergyWithBeltLine(this.from);
+                }
             }
         }
-        TileEntityBelt prev = getPreviousBelt();
-        if(prev != null)
+        if (from.equals(ForgeDirection.SOUTH) || from.equals(ForgeDirection.DOWN))
         {
-            if(prev.getEnergyStored() < this.getEnergyStored())
+            this.from = from.equals(ForgeDirection.DOWN) ? ForgeDirection.SOUTH : from;
+            if (this.getPreviousBelt() != null)
             {
-                this.modifyEnergyStored(-prev.receiveEnergy(Integers.Energy.Storage.BELT, false));
+                if(this.getPreviousBelt().getEnergyStored() < this.getEnergyStored())
+                {
+                    this.extractEnergy(this.getPreviousBelt().receiveEnergy(this.getEnergyStored(), false), false);
+                    this.getPreviousBelt().syncEnergyWithBeltLine(this.from);
+                }
             }
         }
     }
