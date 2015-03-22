@@ -1,6 +1,7 @@
 package tk.blacky704.bgcraft.block;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.tileentity.TileEntity;
@@ -22,6 +23,7 @@ public class BlockBelt extends BlockBG implements ITileEntityProvider
         super();
         this.setBlockName(Names.Blocks.BELT);
         RenderingRegistry.registerBlockHandler(new BlockBeltHandler(renderID));
+        FMLCommonHandler.instance().bus().register(new TileEntityBelt.eventHandler());
     }
 
     @Override
