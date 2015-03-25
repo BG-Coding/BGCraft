@@ -14,6 +14,7 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * @author goeiecool9999
  */
+@SideOnly(Side.CLIENT)
 public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
 {
 
@@ -23,8 +24,6 @@ public class TileEntityBeltSpecialRenderer extends TileEntitySpecialRenderer
 
     public TileEntityBeltSpecialRenderer()
     {
-
-
         //intialize lists
         baseList = glGenLists(1);
         RidgeList = glGenLists(1);

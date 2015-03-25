@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import tk.blacky704.bgcraft.reference.Integers;
+import tk.blacky704.bgcraft.util.LogHelper;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class TileEntityBelt extends TileEnergyHandler
 
     public TileEntityBelt()
     {
-        super(Integers.Energy.Storage.BELT);
+        super(Integers.Energy.Storage.BELT, Integers.Energy.Usages.BELT);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class TileEntityBelt extends TileEnergyHandler
         }
 
         this.moveExcludingEntities();
-        this.nextBeltPush();
+        //this.nextBeltPush();
 
         this.setEnergyStored(this.getEnergyStored() - Integers.Energy.Usages.BELT);
         this.syncEnergyWithBeltLine(this.from);
@@ -69,19 +70,26 @@ public class TileEntityBelt extends TileEnergyHandler
     {
         AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(xCoord, yCoord + 1, zCoord, xCoord + 1, yCoord + 1.01, zCoord + 1);
         ArrayList list = (ArrayList) worldObj.getEntitiesWithinAABB(Entity.class, bb);
-        for (Object e : pushedList)
+        if(pushedList != null)
         {
-            if (list.contains(e))
+            LogHelper.debug(pushedList.size());
+            for (Object e : pushedList)
             {
-                list.remove(e);
+                if (e != null && list != null)
+                {
+                    if (list.contains(e))
+                    {
+                        list.remove(e);
+                    }
+                }
             }
-        }
-        for (Object object : list)
-        {
-            Entity e = (Entity) object;
-            e.moveEntity(0, 0, animationSpeed / animationProgressMax / 2);
-            e.onGround = true;
-            pushedList.add(e);
+            for (Object object : list)
+            {
+                Entity e = (Entity) object;
+                e.moveEntity(0, 0, animationSpeed / animationProgressMax / 2);
+                e.onGround = true;
+                pushedList.add(e);
+            }
         }
     }
 
@@ -124,7 +132,7 @@ public class TileEntityBelt extends TileEnergyHandler
             {
                 if(this.getNextBelt().getEnergyStored() < this.getEnergyStored())
                 {
-                    this.extractEnergy(this.getNextBelt().receiveEnergy(this.getEnergyStored(), false), false);
+                    this.extractEnergy(this.getNextBelt().receiveEnergy(1000 - 11, false), false);
                     this.getNextBelt().syncEnergyWithBeltLine(this.from);
                 }
             }
@@ -136,7 +144,7 @@ public class TileEntityBelt extends TileEnergyHandler
             {
                 if(this.getPreviousBelt().getEnergyStored() < this.getEnergyStored())
                 {
-                    this.extractEnergy(this.getPreviousBelt().receiveEnergy(this.getEnergyStored(), false), false);
+                    this.extractEnergy(this.getPreviousBelt().receiveEnergy(1000 - 11, false), false);
                     this.getPreviousBelt().syncEnergyWithBeltLine(this.from);
                 }
             }
@@ -177,12 +185,7 @@ public class TileEntityBelt extends TileEnergyHandler
         return super.getRenderBoundingBox().expand(0, 0, 1);
     }
 
-    public boolean hasEnergyToOperate()
-    {
-        return this.getEnergyStored() >= Integers.Energy.Usages.BELT;
-    }
-
-    public static class eventHandler
+    public static class EventHandler
     {
         @SubscribeEvent
         public void onPostTick(WorldTickEvent event)
@@ -190,7 +193,4 @@ public class TileEntityBelt extends TileEnergyHandler
             pushedList.clear();
         }
     }
-
-
-
 }

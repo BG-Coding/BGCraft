@@ -35,6 +35,8 @@ public class Names
         public static final String BELT = "belt";
         public static final String TOMATO_PLANT = "tomatoPlant";
         public static final String CREATIVE_GENERATOR = "creativeGenerator";
+        public static final String VACUUM_PUMP_ACTIVE = "vacuumPumpActive";
+        public static final String VACUUM_PUMP_IDLE = "vacuumPumpIdle";
 
         public class OreDic
         {
@@ -46,7 +48,7 @@ public class Names
     {
         public static final String PIZZA_OVEN = "tilePizzaOven";
         public static final String BELT = "tileEntityBelt";
-        public static final String CREATIVE_GENERATOR = "tileCreativeGenerator";
+        public static final String VACUUM_PUMP = "tileVacuumPump";
     }
 
     public class Containers

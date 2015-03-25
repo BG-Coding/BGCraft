@@ -2,6 +2,8 @@ package tk.blacky704.bgcraft.block;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.tileentity.TileEntity;
@@ -16,6 +18,7 @@ import tk.blacky704.bgcraft.tileentity.renderer.TileEntityBeltSpecialRenderer;
  */
 public class BlockBelt extends BlockBG implements ITileEntityProvider
 {
+    @SideOnly(Side.CLIENT)
     public static TileEntityBeltSpecialRenderer renderer = new TileEntityBeltSpecialRenderer();
     public int renderID = RenderingRegistry.getNextAvailableRenderId();
     public BlockBelt()
@@ -23,7 +26,7 @@ public class BlockBelt extends BlockBG implements ITileEntityProvider
         super();
         this.setBlockName(Names.Blocks.BELT);
         RenderingRegistry.registerBlockHandler(new BlockBeltHandler(renderID));
-        FMLCommonHandler.instance().bus().register(new TileEntityBelt.eventHandler());
+        FMLCommonHandler.instance().bus().register(new TileEntityBelt.EventHandler());
     }
 
     @Override

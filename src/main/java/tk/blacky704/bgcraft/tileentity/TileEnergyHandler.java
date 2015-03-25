@@ -1,26 +1,45 @@
 package tk.blacky704.bgcraft.tileentity;
 
 import cofh.api.energy.IEnergyHandler;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
+import tk.blacky704.bgcraft.reference.Integers;
 
 /**
  * @author Blacky
  */
 public class TileEnergyHandler extends TileEnergyStorage implements IEnergyHandler
 {
-    public TileEnergyHandler(int capacity)
+    private int usage;
+
+    public TileEnergyHandler(int capacity, int usage)
     {
-        this(capacity, capacity, capacity);
+        this(capacity, capacity, capacity, usage);
     }
 
-    public TileEnergyHandler(int capacity, int maxTransfer)
+    public TileEnergyHandler(int capacity, int maxTransfer, int usage)
     {
-        this(capacity, maxTransfer, maxTransfer);
+        this(capacity, maxTransfer, maxTransfer, usage);
     }
 
-    public TileEnergyHandler(int capacity, int maxReceive, int maxExtract)
+    public TileEnergyHandler(int capacity, int maxReceive, int maxExtract, int usage)
     {
         super(capacity, maxReceive, maxExtract);
+        this.usage = usage;
+    }
+
+    public void setUsage(int usage)
+    {
+        if(usage > this.getMaxEnergyStored())
+        {
+            usage = this.getMaxEnergyStored();
+        }
+        this.usage = usage;
+    }
+
+    public boolean hasEnergyToOperate()
+    {
+        return this.getEnergyStored() >= this.usage;
     }
 
     @Override
