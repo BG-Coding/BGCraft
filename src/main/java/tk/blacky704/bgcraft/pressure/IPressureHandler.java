@@ -3,25 +3,25 @@ package tk.blacky704.bgcraft.pressure;
 /**
  * @author Blacky
  */
-public interface IPressureHandler
+public interface IPressureHandler extends IPressureConnection
 {
-    public double receivePressure(double pressure, double maxPressure, double maxNegativePressure);
+    double receivePressure(double pressure, double maxPressure, double maxNegativePressure);
 
-    public double extractPressure(double pressure, double maxPressure, double maxNegativePressure);
+    double extractPressure(double pressure, double maxPressure, double maxNegativePressure);
 
-    public void balancePressureWith(double pressure, int x, int y, int z);
+    void balancePressureWith(double pressure, int x, int y, int z);
 
-    public double getPressure();
+    double getPressure();
 
-    public double getMaxPressure();
+    double getMaxPressure();
 
-    public double getMaxNegativePressure();
+    double getMaxNegativePressure();
 
-    public void setMaxPressure(double maxPressure);
+    void setMaxPressure(double maxPressure);
 
-    public void setMaxNegativePressure(double maxNegativePressure);
+    void setMaxNegativePressure(double maxNegativePressure);
 
-    public void setPressure(double pressure);
+    void setPressure(double pressure);
 
-    public void modifyPressure(double addedPressure);
+    void modifyPressure(double addedPressure);
 }

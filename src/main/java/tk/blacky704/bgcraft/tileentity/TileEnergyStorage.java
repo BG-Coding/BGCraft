@@ -109,7 +109,6 @@ public class TileEnergyStorage extends TileEntity implements IEnergyStorage
 
     public void modifyEnergyStored(int energy)
     {
-
         this.energy += energy;
 
         if (this.energy > capacity)
@@ -150,7 +149,6 @@ public class TileEnergyStorage extends TileEntity implements IEnergyStorage
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate)
     {
-
         int energyReceived = Math.min(capacity - energy, Math.min(this.maxReceive, maxReceive));
 
         if (!simulate)
@@ -163,7 +161,6 @@ public class TileEnergyStorage extends TileEntity implements IEnergyStorage
     @Override
     public int extractEnergy(int maxExtract, boolean simulate)
     {
-
         int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
 
         if (!simulate)
@@ -176,14 +173,12 @@ public class TileEnergyStorage extends TileEntity implements IEnergyStorage
     @Override
     public int getEnergyStored()
     {
-
         return energy;
     }
 
     @Override
     public int getMaxEnergyStored()
     {
-
         return capacity;
     }
 
